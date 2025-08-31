@@ -411,9 +411,9 @@ export default function MinimalInfiniteCanvas({ className = "", containerHeight 
         // Check if we already have this video stored
         const existingVideo = await canvasStorage.getVideo(video.id);
         if (!existingVideo) {
-      
+
           const base64 = await normalizeToBase64([video.src]);
-  
+
           await canvasStorage.saveVideo(base64[0], video.duration, video.id, video?.isAudio, video?.meta);
         }
       }
@@ -444,7 +444,7 @@ export default function MinimalInfiniteCanvas({ className = "", containerHeight 
       for (const element of canvasState.elements) {
         if (element.type === "image" && element.imageId) {
           const imageData = await canvasStorage.getImage(element.imageId);
-  
+
           if (imageData) {
             loadedImages.push({
               id: element.id,
@@ -1877,6 +1877,12 @@ export default function MinimalInfiniteCanvas({ className = "", containerHeight 
                   {(generationStatus)}
                 </p>
               )}
+            {isMobile && (
+              <div className="flex flex-col gap-1">
+                <p className="text-xs text-muted-foreground text-center">{`Canvas works better on desktop`}</p>
+                <p className="text-xs text-muted-foreground text-center">{`Generation results are also displayed at the bottom.`}</p>
+              </div>
+            )}
             <MemoizedAiCanvaApp
               aiAppRef={aiGenerationAppRef}
               // onGenerate={isMobile ? undefined : handleOnGenerate}
