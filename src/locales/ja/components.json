@@ -1,0 +1,25 @@
+{
+    "user-banner": {
+        "title": "🎨 無限キャンバス AI OMNIGEN",
+        "freeBadge": "無料で使用",
+        "onlineService": {
+            "title": "🚀 推奨：オンラインサービス",
+            "description": "すべてのAI機能を提供するオンラインサービスにアクセス - セットアップ不要！",
+            "tryOnlineButton": "オンラインサービスを試す",
+            "starOnGithubButton": "GitHubでスター"
+        },
+        "localSetup": {
+            "title": "ローカルセットアップ",
+            "description": "fal.aiモデル用のAPIキーを設定するには⚙️アイコンをクリック",
+            "getApiKey": "APIキーを取得：",
+            "clientSideNote": "💡 クライアントサイドのみ、適切な許可を確認してください",
+            "securityWarning": "APIキーはブラウザからAIプロバイダーに直接送信されます。安全なブラウザ環境で使用し、不要時は削除してください。"
+        },
+        "features": {
+            "multipleAi": "✨ 複数のAIモデル",
+            "imageVideo": "🎬 画像と動画の処理",
+            "infiniteCanvas": "🖼️ 無限キャンバス作成"
+        }
+    }
+
+}

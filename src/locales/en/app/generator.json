@@ -1,0 +1,149 @@
+{
+    "ai-generator-app":{
+
+        "tabTitle": "AI Canva APP locale",
+        "modelLabel": "Model",
+        "promptPlaceholder": "Describe your idea",
+        "characterCount": "{{current}}/{{max}}",
+
+        "apiSettings": {
+            "useCustomApiKey": "Use Custom API Key:",
+            "none": "None"
+        },
+
+        "generationType": {
+            "selectType": "Choose Type"
+        },
+    
+
+        "stepLabels": {
+            "uploadYourImage": "Upload your Image"
+        },
+    
+
+        "tips": {
+            "notSupported": "This model does not support image reference"
+        },
+    
+
+        "buttons": {
+            "model": "Model",
+            "promptLibrary": "Prompt Library", 
+            "endImageUpload": "End",
+            "style": "Style",
+            "generate": "Generate",
+            "advancedSettings": "Advanced Settings",
+            "promptPreset": "Prompt Preset",
+      
+            "chooseImage": "Choose Image",
+            "choose": "Choose",
+            "clear": "Clear",
+            "remove": "Remove",
+            "clearAll": "Clear All"
+        },
+    
+
+        "imageUpload": {
+            "startImageLabel": "Start Image",
+            "endImageLabel": "End Image",
+            "unsupported": "Unsupported",
+            "ignored": "Ignored",
+            "uploadModes": {
+                "single": "Single",
+                "combine": "Combine (2)"
+            },
+            "imageLabels": {
+                "firstImage": "First Image",
+                "secondImage": "Second Image"
+            },
+            "status": {
+                "noImageSelected": "No image selected",
+                "combinedPreview": "Combined preview →",
+                "selectTwoImages": "Select two images to auto-combine"
+            },
+            "altTexts": {
+                "uploaded": "uploaded image",
+                "firstImage": "first image",
+                "secondImage": "second image", 
+                "mergedImage": "merged image"
+            },
+            "tooltips": {
+                "imageNotSupported": "This model does not support image reference",
+                "uploadReference": "Upload reference image (max {{maxImages}})",
+                "endImageNotSupported": "This model does not support end image reference",
+                "uploadEndReference": "Upload end image reference (max {{maxImages}})",
+                "uploadSingle": "Upload 1 image (max {{max}})"
+            }
+        },
+    
+
+        "mediaTypes": {
+            "audio": "Audio",
+            "video": "Video",
+            "tooltips": {
+                "uploadMedia": "Upload {{type}} (max {{max}})",
+                "mediaNotSupported": "This model does not support this media input"
+            }
+        },
+    
+ 
+        "form": {
+            "placeholders": {
+                "selectField": "Select {{field}}",
+                "enterField": "Enter {{field}}"
+            }
+        },
+    
+  
+        "promptProcessing": {
+            "noProcessing": "No processing",
+            "translateToEnglish": "Translate to English For better result",
+            "enhancePrompt": "Enhance prompt",
+            "displayModes": {
+                "raw": "Raw",
+                "en": "EN",
+                "aiPlus": "AI+"
+            }
+        },
+    
+
+        "creditsMode": {
+            "free": "free",
+            "freeTooltip": "Use free quota, shared compute, watermarked, public by default",
+            "useCredits": "use credits",
+            "useCreditsTooltip": "Use credits, faster and private generation",
+            "termsNote": "Note: By using this feature, you agree to our website's Terms of Service and Privacy Policy.",
+            
+        
+            "modeStatus": {
+                "creditMode": "Credit Mode: Use credits, faster and private generation",
+                "freeMode": "Free Mode: Use free quota, shared compute, watermarked, public by default"
+            }
+        },
+    
+    
+        "generation": {
+            "maxQueueLabel": "Max concurrent: {{current}}/{{max}}",
+            "generating": {
+                "tips1": "This may take a moment",
+                "tips2": "Generating image..."
+            }
+        },
+    
+
+        "adapter": {
+            "removeStyle": "Remove Style",
+            "description": "Description:"
+        },
+    
+ 
+        "results": {
+          
+        },
+    
+       
+        "toast": {
+      
+        }
+    }
+}

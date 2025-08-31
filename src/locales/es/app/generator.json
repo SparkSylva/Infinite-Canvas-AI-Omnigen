@@ -1,0 +1,115 @@
+{
+    "ai-generator-app": {
+        "tabTitle": "Localización de la App AI Canva",
+        "modelLabel": "Modelo",
+        "promptPlaceholder": "Describe tu idea",
+        "characterCount": "{{current}}/{{max}}",
+        "apiSettings": {
+            "useCustomApiKey": "Usar clave de API personalizada:",
+            "none": "Ninguna"
+        },
+        "generationType": {
+            "selectType": "Elegir tipo"
+        },
+        "stepLabels": {
+            "uploadYourImage": "Sube tu imagen"
+        },
+        "tips": {
+            "notSupported": "Este modelo no admite referencias de imágenes"
+        },
+        "buttons": {
+            "model": "Modelo",
+            "promptLibrary": "Biblioteca de Prompts",
+            "endImageUpload": "Finalizar",
+            "style": "Estilo",
+            "generate": "Generar",
+            "advancedSettings": "Configuración avanzada",
+            "promptPreset": "Prompt predefinido",
+            "chooseImage": "Elegir imagen",
+            "choose": "Elegir",
+            "clear": "Limpiar",
+            "remove": "Eliminar",
+            "clearAll": "Limpiar todo"
+        },
+        "imageUpload": {
+            "startImageLabel": "Imagen de inicio",
+            "endImageLabel": "Imagen final",
+            "unsupported": "No compatible",
+            "ignored": "Ignorado",
+            "uploadModes": {
+                "single": "Única",
+                "combine": "Combinar (2)"
+            },
+            "imageLabels": {
+                "firstImage": "Primera imagen",
+                "secondImage": "Segunda imagen"
+            },
+            "status": {
+                "noImageSelected": "No se ha seleccionado ninguna imagen",
+                "combinedPreview": "Vista previa combinada →",
+                "selectTwoImages": "Selecciona dos imágenes para combinarlas automáticamente"
+            },
+            "altTexts": {
+                "uploaded": "imagen subida",
+                "firstImage": "primera imagen",
+                "secondImage": "segunda imagen",
+                "mergedImage": "imagen fusionada"
+            },
+            "tooltips": {
+                "imageNotSupported": "Este modelo no admite referencias de imágenes",
+                "uploadReference": "Subir imagen de referencia (máx. {{maxImages}})",
+                "endImageNotSupported": "Este modelo no admite referencias de imágenes finales",
+                "uploadEndReference": "Subir imagen de referencia final (máx. {{maxImages}})",
+                "uploadSingle": "Subir 1 imagen (máx. {{max}})"
+            }
+        },
+        "mediaTypes": {
+            "audio": "Audio",
+            "video": "Video",
+            "tooltips": {
+                "uploadMedia": "Subir {{type}} (máx. {{max}})",
+                "mediaNotSupported": "Este modelo no es compatible con esta entrada de medios"
+            }
+        },
+        "form": {
+            "placeholders": {
+                "selectField": "Seleccionar {{field}}",
+                "enterField": "Introducir {{field}}"
+            }
+        },
+        "promptProcessing": {
+            "noProcessing": "Sin procesar",
+            "translateToEnglish": "Traducir al inglés para un mejor resultado",
+            "enhancePrompt": "Mejorar prompt",
+            "displayModes": {
+                "raw": "Original",
+                "en": "EN",
+                "aiPlus": "IA+"
+            }
+        },
+        "creditsMode": {
+            "free": "gratis",
+            "freeTooltip": "Usa la cuota gratuita, cómputo compartido, con marca de agua, público por defecto",
+            "useCredits": "usar créditos",
+            "useCreditsTooltip": "Usa créditos, generación más rápida y privada",
+            "termsNote": "Nota: Al usar esta función, aceptas los Términos de Servicio y la Política de Privacidad de nuestro sitio web.",
+            "modeStatus": {
+                "creditMode": "Modo de Créditos: Usa créditos, generación más rápida y privada",
+                "freeMode": "Modo Gratuito: Usa la cuota gratuita, cómputo compartido, con marca de agua, público por defecto"
+            }
+        },
+        "generation": {
+            "maxQueueLabel": "Máx. simultáneos: {{current}}/{{max}}",
+            "generating": {
+                "tips1": "Esto puede tardar un momento",
+                "tips2": "Generando imagen..."
+            }
+        },
+        "adapter": {
+            "removeStyle": "Quitar estilo",
+            "description": "Descripción:"
+        },
+        "results": {},
+        "toast": {}
+    }
+}

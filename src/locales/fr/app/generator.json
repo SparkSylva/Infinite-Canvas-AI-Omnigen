@@ -1,0 +1,115 @@
+{
+    "ai-generator-app": {
+        "tabTitle": "Locale de l'application IA Canva",
+        "modelLabel": "Modèle",
+        "promptPlaceholder": "Décrivez votre idée",
+        "characterCount": "{{current}}/{{max}}",
+        "apiSettings": {
+            "useCustomApiKey": "Utiliser une clé API personnalisée :",
+            "none": "Aucun"
+        },
+        "generationType": {
+            "selectType": "Choisir le type"
+        },
+        "stepLabels": {
+            "uploadYourImage": "Téléchargez votre image"
+        },
+        "tips": {
+            "notSupported": "Ce modèle ne prend pas en charge la référence d'image"
+        },
+        "buttons": {
+            "model": "Modèle",
+            "promptLibrary": "Bibliothèque de prompts",
+            "endImageUpload": "Fin",
+            "style": "Style",
+            "generate": "Générer",
+            "advancedSettings": "Paramètres avancés",
+            "promptPreset": "Préréglage de prompt",
+            "chooseImage": "Choisir une image",
+            "choose": "Choisir",
+            "clear": "Effacer",
+            "remove": "Supprimer",
+            "clearAll": "Tout effacer"
+        },
+        "imageUpload": {
+            "startImageLabel": "Image de départ",
+            "endImageLabel": "Image de fin",
+            "unsupported": "Non pris en charge",
+            "ignored": "Ignoré",
+            "uploadModes": {
+                "single": "Unique",
+                "combine": "Combiner (2)"
+            },
+            "imageLabels": {
+                "firstImage": "Première image",
+                "secondImage": "Deuxième image"
+            },
+            "status": {
+                "noImageSelected": "Aucune image sélectionnée",
+                "combinedPreview": "Aperçu combiné →",
+                "selectTwoImages": "Sélectionnez deux images pour les combiner automatiquement"
+            },
+            "altTexts": {
+                "uploaded": "image téléchargée",
+                "firstImage": "première image",
+                "secondImage": "deuxième image",
+                "mergedImage": "image fusionnée"
+            },
+            "tooltips": {
+                "imageNotSupported": "Ce modèle ne prend pas en charge la référence d'image",
+                "uploadReference": "Télécharger une image de référence (max {{maxImages}})",
+                "endImageNotSupported": "Ce modèle ne prend pas en charge la référence d'image de fin",
+                "uploadEndReference": "Télécharger une image de référence de fin (max {{maxImages}})",
+                "uploadSingle": "Télécharger 1 image (max {{max}})"
+            }
+        },
+        "mediaTypes": {
+            "audio": "Audio",
+            "video": "Vidéo",
+            "tooltips": {
+                "uploadMedia": "Télécharger {{type}} (max {{max}})",
+                "mediaNotSupported": "Ce modèle ne prend pas en charge cette entrée média"
+            }
+        },
+        "form": {
+            "placeholders": {
+                "selectField": "Sélectionner {{field}}",
+                "enterField": "Saisir {{field}}"
+            }
+        },
+        "promptProcessing": {
+            "noProcessing": "Aucun traitement",
+            "translateToEnglish": "Traduire en anglais pour un meilleur résultat",
+            "enhancePrompt": "Améliorer le prompt",
+            "displayModes": {
+                "raw": "Brut",
+                "en": "EN",
+                "aiPlus": "IA+"
+            }
+        },
+        "creditsMode": {
+            "free": "gratuit",
+            "freeTooltip": "Utiliser le quota gratuit, calcul partagé, avec filigrane, public par défaut",
+            "useCredits": "utiliser des crédits",
+            "useCreditsTooltip": "Utiliser des crédits, génération plus rapide et privée",
+            "termsNote": "Remarque : En utilisant cette fonctionnalité, vous acceptez les Conditions d'utilisation et la Politique de confidentialité de notre site web.",
+            "modeStatus": {
+                "creditMode": "Mode Crédit : Utiliser des crédits, génération plus rapide et privée",
+                "freeMode": "Mode Gratuit : Utiliser le quota gratuit, calcul partagé, avec filigrane, public par défaut"
+            }
+        },
+        "generation": {
+            "maxQueueLabel": "Concurrents max : {{current}}/{{max}}",
+            "generating": {
+                "tips1": "Cela peut prendre un moment",
+                "tips2": "Génération de l'image en cours..."
+            }
+        },
+        "adapter": {
+            "removeStyle": "Supprimer le style",
+            "description": "Description :"
+        },
+        "results": {},
+        "toast": {}
+    }
+}

@@ -1,0 +1,115 @@
+{
+    "ai-generator-app": {
+        "tabTitle": "AI Canva APP Gebietsschema",
+        "modelLabel": "Modell",
+        "promptPlaceholder": "Beschreiben Sie Ihre Idee",
+        "characterCount": "{{current}}/{{max}}",
+        "apiSettings": {
+            "useCustomApiKey": "Benutzerdefinierten API-Schlüssel verwenden:",
+            "none": "Keine"
+        },
+        "generationType": {
+            "selectType": "Typ auswählen"
+        },
+        "stepLabels": {
+            "uploadYourImage": "Laden Sie Ihr Bild hoch"
+        },
+        "tips": {
+            "notSupported": "Dieses Modell unterstützt keine Bildreferenz"
+        },
+        "buttons": {
+            "model": "Modell",
+            "promptLibrary": "Prompt-Bibliothek",
+            "endImageUpload": "Ende",
+            "style": "Stil",
+            "generate": "Generieren",
+            "advancedSettings": "Erweiterte Einstellungen",
+            "promptPreset": "Prompt-Voreinstellung",
+            "chooseImage": "Bild auswählen",
+            "choose": "Auswählen",
+            "clear": "Löschen",
+            "remove": "Entfernen",
+            "clearAll": "Alles löschen"
+        },
+        "imageUpload": {
+            "startImageLabel": "Startbild",
+            "endImageLabel": "Endbild",
+            "unsupported": "Nicht unterstützt",
+            "ignored": "Ignoriert",
+            "uploadModes": {
+                "single": "Einzeln",
+                "combine": "Kombinieren (2)"
+            },
+            "imageLabels": {
+                "firstImage": "Erstes Bild",
+                "secondImage": "Zweites Bild"
+            },
+            "status": {
+                "noImageSelected": "Kein Bild ausgewählt",
+                "combinedPreview": "Kombinierte Vorschau →",
+                "selectTwoImages": "Wählen Sie zwei Bilder zum automatischen Kombinieren aus"
+            },
+            "altTexts": {
+                "uploaded": "hochgeladenes Bild",
+                "firstImage": "erstes Bild",
+                "secondImage": "zweites Bild",
+                "mergedImage": "zusammengeführtes Bild"
+            },
+            "tooltips": {
+                "imageNotSupported": "Dieses Modell unterstützt keine Bildreferenz",
+                "uploadReference": "Referenzbild hochladen (max. {{maxImages}})",
+                "endImageNotSupported": "Dieses Modell unterstützt keine Endbildreferenz",
+                "uploadEndReference": "End-Referenzbild hochladen (max. {{maxImages}})",
+                "uploadSingle": "1 Bild hochladen (max. {{max}})"
+            }
+        },
+        "mediaTypes": {
+            "audio": "Audio",
+            "video": "Video",
+            "tooltips": {
+                "uploadMedia": "{{type}} hochladen (max. {{max}})",
+                "mediaNotSupported": "Dieses Modell unterstützt diese Medieneingabe nicht"
+            }
+        },
+        "form": {
+            "placeholders": {
+                "selectField": "{{field}} auswählen",
+                "enterField": "{{field}} eingeben"
+            }
+        },
+        "promptProcessing": {
+            "noProcessing": "Keine Verarbeitung",
+            "translateToEnglish": "Für bessere Ergebnisse ins Englische übersetzen",
+            "enhancePrompt": "Prompt verbessern",
+            "displayModes": {
+                "raw": "Roh",
+                "en": "EN",
+                "aiPlus": "KI+"
+            }
+        },
+        "creditsMode": {
+            "free": "kostenlos",
+            "freeTooltip": "Kostenloses Kontingent nutzen, geteilte Rechenleistung, mit Wasserzeichen, standardmäßig öffentlich",
+            "useCredits": "Credits verwenden",
+            "useCreditsTooltip": "Credits verwenden, schnellere und private Generierung",
+            "termsNote": "Hinweis: Durch die Nutzung dieser Funktion stimmen Sie den Nutzungsbedingungen und der Datenschutzrichtlinie unserer Website zu.",
+            "modeStatus": {
+                "creditMode": "Credit-Modus: Credits verwenden, schnellere und private Generierung",
+                "freeMode": "Kostenloser Modus: Kostenloses Kontingent nutzen, geteilte Rechenleistung, mit Wasserzeichen, standardmäßig öffentlich"
+            }
+        },
+        "generation": {
+            "maxQueueLabel": "Max. gleichzeitig: {{current}}/{{max}}",
+            "generating": {
+                "tips1": "Dies kann einen Moment dauern",
+                "tips2": "Bild wird generiert..."
+            }
+        },
+        "adapter": {
+            "removeStyle": "Stil entfernen",
+            "description": "Beschreibung:"
+        },
+        "results": {},
+        "toast": {}
+    }
+}

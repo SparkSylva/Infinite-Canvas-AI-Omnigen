@@ -1,0 +1,115 @@
+{
+    "ai-generator-app": {
+        "tabTitle": "AI Canva 앱 로케일",
+        "modelLabel": "모델",
+        "promptPlaceholder": "아이디어를 설명해주세요",
+        "characterCount": "{{current}}/{{max}}",
+        "apiSettings": {
+            "useCustomApiKey": "사용자 지정 API 키 사용:",
+            "none": "없음"
+        },
+        "generationType": {
+            "selectType": "유형 선택"
+        },
+        "stepLabels": {
+            "uploadYourImage": "이미지 업로드"
+        },
+        "tips": {
+            "notSupported": "이 모델은 이미지 참조를 지원하지 않습니다"
+        },
+        "buttons": {
+            "model": "모델",
+            "promptLibrary": "프롬프트 라이브러리",
+            "endImageUpload": "종료",
+            "style": "스타일",
+            "generate": "생성하기",
+            "advancedSettings": "고급 설정",
+            "promptPreset": "프롬프트 프리셋",
+            "chooseImage": "이미지 선택",
+            "choose": "선택",
+            "clear": "지우기",
+            "remove": "제거",
+            "clearAll": "모두 지우기"
+        },
+        "imageUpload": {
+            "startImageLabel": "시작 이미지",
+            "endImageLabel": "종료 이미지",
+            "unsupported": "지원 안 됨",
+            "ignored": "무시됨",
+            "uploadModes": {
+                "single": "단일",
+                "combine": "결합 (2)"
+            },
+            "imageLabels": {
+                "firstImage": "첫 번째 이미지",
+                "secondImage": "두 번째 이미지"
+            },
+            "status": {
+                "noImageSelected": "선택된 이미지 없음",
+                "combinedPreview": "결합된 미리보기 →",
+                "selectTwoImages": "자동 결합을 위해 두 개의 이미지를 선택하세요"
+            },
+            "altTexts": {
+                "uploaded": "업로드된 이미지",
+                "firstImage": "첫 번째 이미지",
+                "secondImage": "두 번째 이미지",
+                "mergedImage": "병합된 이미지"
+            },
+            "tooltips": {
+                "imageNotSupported": "이 모델은 이미지 참조를 지원하지 않습니다",
+                "uploadReference": "참조 이미지 업로드 (최대 {{maxImages}}개)",
+                "endImageNotSupported": "이 모델은 종료 이미지 참조를 지원하지 않습니다",
+                "uploadEndReference": "종료 참조 이미지 업로드 (최대 {{maxImages}}개)",
+                "uploadSingle": "이미지 1개 업로드 (최대 {{max}}개)"
+            }
+        },
+        "mediaTypes": {
+            "audio": "오디오",
+            "video": "비디오",
+            "tooltips": {
+                "uploadMedia": "{{type}} 업로드 (최대 {{max}}개)",
+                "mediaNotSupported": "이 모델은 이 미디어 입력을 지원하지 않습니다"
+            }
+        },
+        "form": {
+            "placeholders": {
+                "selectField": "{{field}} 선택",
+                "enterField": "{{field}} 입력"
+            }
+        },
+        "promptProcessing": {
+            "noProcessing": "처리 없음",
+            "translateToEnglish": "더 나은 결과를 위해 영어로 번역",
+            "enhancePrompt": "프롬프트 강화",
+            "displayModes": {
+                "raw": "원본",
+                "en": "영문",
+                "aiPlus": "AI+"
+            }
+        },
+        "creditsMode": {
+            "free": "무료",
+            "freeTooltip": "무료 할당량 사용, 공유 컴퓨팅, 워터마크 표시, 기본적으로 공개",
+            "useCredits": "크레딧 사용",
+            "useCreditsTooltip": "크레딧 사용, 더 빠르고 비공개로 생성",
+            "termsNote": "참고: 이 기능을 사용하면 저희 웹사이트의 서비스 약관 및 개인정보 보호정책에 동의하는 것으로 간주됩니다.",
+            "modeStatus": {
+                "creditMode": "크레딧 모드: 크레딧 사용, 더 빠르고 비공개로 생성",
+                "freeMode": "무료 모드: 무료 할당량 사용, 공유 컴퓨팅, 워터마크 표시, 기본적으로 공개"
+            }
+        },
+        "generation": {
+            "maxQueueLabel": "최대 동시 작업: {{current}}/{{max}}",
+            "generating": {
+                "tips1": "잠시만 기다려 주세요",
+                "tips2": "이미지 생성 중..."
+            }
+        },
+        "adapter": {
+            "removeStyle": "스타일 제거",
+            "description": "설명:"
+        },
+        "results": {},
+        "toast": {}
+    }
+}

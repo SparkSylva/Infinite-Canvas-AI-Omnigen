@@ -1,0 +1,25 @@
+{
+    "user-banner": {
+        "title": "🎨 무한 캔버스 AI Omnigen",
+        "freeBadge": "무료 사용",
+        "onlineService": {
+            "title": "🚀 추천: 온라인 서비스",
+            "description": "모든 AI 기능을 제공하는 온라인 서비스에 액세스하세요 - 설정 불필요!",
+            "tryOnlineButton": "온라인 서비스 사용해보기",
+            "starOnGithubButton": "GitHub에서 스타 누르기"
+        },
+        "localSetup": {
+            "title": "로컬 설정",
+            "description": "fal.ai 모델용 API 키를 설정하려면 ⚙️ 아이콘을 클릭하세요",
+            "getApiKey": "API 키 받기:",
+            "clientSideNote": "💡 클라이언트 측만, 적절한 권한을 확인하세요",
+            "securityWarning": "API 키는 브라우저에서 AI 제공업체로 직접 전송됩니다. 안전한 브라우저 환경에서 사용하고 필요하지 않을 때 삭제하세요."
+        },
+        "features": {
+            "multipleAi": "✨ 다양한 AI 모델",
+            "imageVideo": "🎬 이미지 및 비디오 처리",
+            "infiniteCanvas": "🖼️ 무한 캔버스 생성"
+        }
+    }
+
+}

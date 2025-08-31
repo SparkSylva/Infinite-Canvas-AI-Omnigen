@@ -1,0 +1,149 @@
+{
+    "ai-generator-app":{
+
+        "tabTitle": "AI 画布应用",
+        "modelLabel": "模型",
+        "promptPlaceholder": "描述您的创意",
+        "characterCount": "{{current}}/{{max}}",
+
+        "apiSettings": {
+            "useCustomApiKey": "使用自定义 API 密钥：",
+            "none": "无"
+        },
+
+        "generationType": {
+            "selectType": "选择类型"
+        },
+    
+
+        "stepLabels": {
+            "uploadYourImage": "上传您的图像"
+        },
+    
+
+        "tips": {
+            "notSupported": "此模型不支持图像参考"
+        },
+    
+
+        "buttons": {
+            "model": "模型",
+            "promptLibrary": "提示词库", 
+            "endImageUpload": "结束",
+            "style": "风格",
+            "generate": "生成",
+            "advancedSettings": "高级设置",
+            "promptPreset": "提示词预设",
+      
+            "chooseImage": "选择图像",
+            "choose": "选择",
+            "clear": "清除",
+            "remove": "移除",
+            "clearAll": "全部清除"
+        },
+    
+
+        "imageUpload": {
+            "startImageLabel": "起始图像",
+            "endImageLabel": "结束图像",
+            "unsupported": "不支持",
+            "ignored": "已忽略",
+            "uploadModes": {
+                "single": "单张",
+                "combine": "合并 (2张)"
+            },
+            "imageLabels": {
+                "firstImage": "第一张图像",
+                "secondImage": "第二张图像"
+            },
+            "status": {
+                "noImageSelected": "未选择图像",
+                "combinedPreview": "合并预览 →",
+                "selectTwoImages": "选择两张图像进行自动合并"
+            },
+            "altTexts": {
+                "uploaded": "已上传图像",
+                "firstImage": "第一张图像",
+                "secondImage": "第二张图像", 
+                "mergedImage": "合并图像"
+            },
+            "tooltips": {
+                "imageNotSupported": "此模型不支持图像参考",
+                "uploadReference": "上传参考图像 (最多 {{maxImages}} 张)",
+                "endImageNotSupported": "此模型不支持结束图像参考",
+                "uploadEndReference": "上传结束图像参考 (最多 {{maxImages}} 张)",
+                "uploadSingle": "上传 1 张图像 (最多 {{max}} 张)"
+            }
+        },
+    
+
+        "mediaTypes": {
+            "audio": "音频",
+            "video": "视频",
+            "tooltips": {
+                "uploadMedia": "上传 {{type}} (最多 {{max}} 个)",
+                "mediaNotSupported": "此模型不支持这种媒体输入"
+            }
+        },
+    
+ 
+        "form": {
+            "placeholders": {
+                "selectField": "选择 {{field}}",
+                "enterField": "输入 {{field}}"
+            }
+        },
+    
+  
+        "promptProcessing": {
+            "noProcessing": "无处理",
+            "translateToEnglish": "翻译为英文以获得更好效果",
+            "enhancePrompt": "增强提示词",
+            "displayModes": {
+                "raw": "原始",
+                "en": "英文",
+                "aiPlus": "AI+"
+            }
+        },
+    
+
+        "creditsMode": {
+            "free": "免费",
+            "freeTooltip": "使用免费配额，共享计算，带水印，默认公开",
+            "useCredits": "使用积分",
+            "useCreditsTooltip": "使用积分，更快速和私人生成",
+            "termsNote": "注意：使用此功能即表示您同意我们网站的服务条款和隐私政策。",
+            
+        
+            "modeStatus": {
+                "creditMode": "积分模式：使用积分，更快速和私人生成",
+                "freeMode": "免费模式：使用免费配额，共享计算，带水印，默认公开"
+            }
+        },
+    
+    
+        "generation": {
+            "maxQueueLabel": "最大并发：{{current}}/{{max}}",
+            "generating": {
+                "tips1": "这可能需要一些时间",
+                "tips2": "正在生成图像..."
+            }
+        },
+    
+
+        "adapter": {
+            "removeStyle": "移除风格",
+            "description": "描述："
+        },
+    
+ 
+        "results": {
+          
+        },
+    
+       
+        "toast": {
+      
+        }
+    }
+}

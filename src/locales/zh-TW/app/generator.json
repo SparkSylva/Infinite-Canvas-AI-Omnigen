@@ -1,0 +1,149 @@
+{
+    "ai-generator-app":{
+
+        "tabTitle": "AI Canva APP 區域設定",
+        "modelLabel": "模型",
+        "promptPlaceholder": "描述您的想法",
+        "characterCount": "{{current}}/{{max}}",
+
+        "apiSettings": {
+            "useCustomApiKey": "使用自訂 API 金鑰：",
+            "none": "無"
+        },
+
+        "generationType": {
+            "selectType": "選擇類型"
+        },
+    
+
+        "stepLabels": {
+            "uploadYourImage": "上傳您的圖片"
+        },
+    
+
+        "tips": {
+            "notSupported": "此模型不支援圖片參考"
+        },
+    
+
+        "buttons": {
+            "model": "模型",
+            "promptLibrary": "提示詞庫", 
+            "endImageUpload": "結束",
+            "style": "風格",
+            "generate": "生成",
+            "advancedSettings": "進階設定",
+            "promptPreset": "提示詞預設",
+      
+            "chooseImage": "選擇圖片",
+            "choose": "選擇",
+            "clear": "清除",
+            "remove": "移除",
+            "clearAll": "全部清除"
+        },
+    
+
+        "imageUpload": {
+            "startImageLabel": "起始圖片",
+            "endImageLabel": "結束圖片",
+            "unsupported": "不支援",
+            "ignored": "已忽略",
+            "uploadModes": {
+                "single": "單張",
+                "combine": "組合 (2)"
+            },
+            "imageLabels": {
+                "firstImage": "第一張圖片",
+                "secondImage": "第二張圖片"
+            },
+            "status": {
+                "noImageSelected": "未選擇圖片",
+                "combinedPreview": "組合預覽 →",
+                "selectTwoImages": "選擇兩張圖片以自動組合"
+            },
+            "altTexts": {
+                "uploaded": "已上傳的圖片",
+                "firstImage": "第一張圖片",
+                "secondImage": "第二張圖片", 
+                "mergedImage": "合併後的圖片"
+            },
+            "tooltips": {
+                "imageNotSupported": "此模型不支援圖片參考",
+                "uploadReference": "上傳參考圖片 (最多 {{maxImages}} 張)",
+                "endImageNotSupported": "此模型不支援結束圖片參考",
+                "uploadEndReference": "上傳結束圖片參考 (最多 {{maxImages}} 張)",
+                "uploadSingle": "上傳 1 張圖片 (最多 {{max}} 張)"
+            }
+        },
+    
+
+        "mediaTypes": {
+            "audio": "音訊",
+            "video": "影片",
+            "tooltips": {
+                "uploadMedia": "上傳 {{type}} (最多 {{max}} 個)",
+                "mediaNotSupported": "此模型不支援此媒體輸入"
+            }
+        },
+    
+ 
+        "form": {
+            "placeholders": {
+                "selectField": "選擇 {{field}}",
+                "enterField": "輸入 {{field}}"
+            }
+        },
+    
+  
+        "promptProcessing": {
+            "noProcessing": "不處理",
+            "translateToEnglish": "翻譯成英文以獲得更佳效果",
+            "enhancePrompt": "增強提示詞",
+            "displayModes": {
+                "raw": "原始",
+                "en": "英文",
+                "aiPlus": "AI+"
+            }
+        },
+    
+
+        "creditsMode": {
+            "free": "免費",
+            "freeTooltip": "使用免費配額，共享運算資源，有浮水印，預設為公開",
+            "useCredits": "使用點數",
+            "useCreditsTooltip": "使用點數，生成速度更快且為私有",
+            "termsNote": "注意：使用此功能即表示您同意本網站的服務條款和隱私權政策。",
+            
+        
+            "modeStatus": {
+                "creditMode": "點數模式：使用點數，生成速度更快且為私有",
+                "freeMode": "免費模式：使用免費配額，共享運算資源，有浮水印，預設為公開"
+            }
+        },
+    
+    
+        "generation": {
+            "maxQueueLabel": "最大並行任務數：{{current}}/{{max}}",
+            "generating": {
+                "tips1": "這可能需要一些時間",
+                "tips2": "正在生成圖片..."
+            }
+        },
+    
+
+        "adapter": {
+            "removeStyle": "移除風格",
+            "description": "描述："
+        },
+    
+ 
+        "results": {
+          
+        },
+    
+       
+        "toast": {
+      
+        }
+    }
+}

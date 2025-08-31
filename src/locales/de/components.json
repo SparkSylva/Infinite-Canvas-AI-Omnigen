@@ -1,0 +1,24 @@
+{
+    "user-banner": {
+        "title": "🎨 Infinite Canvas AI OmniGen",
+        "freeBadge": "Kostenlos nutzbar",
+        "onlineService": {
+            "title": "🚀 Empfohlen: Online-Service",
+            "description": "Greifen Sie auf unseren Online-Service mit allen AI-Features zu - keine Einrichtung erforderlich!",
+            "tryOnlineButton": "Online-Service testen",
+            "starOnGithubButton": "Auf GitHub bewerten"
+        },
+        "localSetup": {
+            "title": "Lokale Einrichtung",
+            "description": "Klicken Sie auf das ⚙️ Symbol, um Ihren API-Schlüssel für fal.ai-Modelle einzurichten",
+            "getApiKey": "API-Schlüssel erhalten:",
+            "clientSideNote": "💡 Nur clientseitig, stellen Sie entsprechende Berechtigungen sicher",
+            "securityWarning": "API-Schlüssel werden direkt von Ihrem Browser an AI-Anbieter gesendet. Bitte in sicherer Browser-Umgebung verwenden und löschen, wenn nicht benötigt."
+        },
+        "features": {
+            "multipleAi": "✨ Mehrere AI-Modelle",
+            "imageVideo": "🎬 Bild- und Videoverarbeitung",
+            "infiniteCanvas": "🖼️ Infinite Canvas-Erstellung"
+        }
+    }
+}
