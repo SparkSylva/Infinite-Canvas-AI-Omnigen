@@ -2,7 +2,7 @@
 
 An enhanced infinite canvas image and video editor with comprehensive AI model integration. Built on top of [fal-ai-community/infinite-kanvas](https://github.com/fal-ai-community/infinite-kanvas), this project extends the original with multi-model AI capabilities, video processing features, and client-side API key management.
 
-🌟 **Live Demo**: [infinite-canva.aiomnigen.com](https://infinite-canva.aiomnigen.com) (deployed on Vercel)
+🌟 **Live Demo**: [infinite-canvas-aiomnigen](https://infinite-canvas.aiomnigen.com) (deployed on Vercel)
 
 ## What's New & Enhanced
 
@@ -48,7 +48,8 @@ This project builds upon the excellent foundation of the original infinite-kanva
 
 ```bash
 # Clone the repository
-git clone [your-repo-url]
+git clone git@github.com:SparkSylva/Infinite-Canvas-AI-Omnigen.git
+
 cd infinite-canvas-ai-omnigen
 
 # Install dependencies
