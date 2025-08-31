@@ -2527,7 +2527,7 @@ const other_series_video_model: ModelSeriesSetting[] = [
 ]
 export const all_image_model: ModelSeriesSetting[] = [
     ...flux_series_image_model,
-    ...openai_series_image_model,
+    // ...openai_series_image_model,
     ...google_series_image_model,
     ...qwen_series_image_model,
     ...character_series_image_model,
@@ -2579,7 +2579,7 @@ const hot_series_model: ModelSeriesSetting[] = hot_model_id
 export const common_model_serise_setting: Record<string, ModelSeriesSetting[]> = {
     "hot": hot_series_model,
     "flux.1": flux_series_image_model,
-    "openai": openai_series_image_model,
+    // "openai": openai_series_image_model,
     "google": google_series_image_model,
     "qwen": qwen_series_image_model,
     "character": character_series_image_model,
