@@ -48,9 +48,9 @@ This project builds upon the excellent foundation of the original infinite-kanva
 
 ```bash
 # Clone the repository
-git clone git@github.com:SparkSylva/Infinite-Canvas-AI-Omnigen.git
+git clone https://github.com/SparkSylva/Infinite-Canvas-AI-Omnigen.git
 
-cd infinite-canvas-ai-omnigen
+cd Infinite-Canvas-AI-Omnigen
 
 # Install dependencies
 npm install
