@@ -85,7 +85,7 @@ class CanvasStorage {
 
         this.db = await openDB<CanvasDB>(this.DB_NAME, this.DB_VERSION, {
             upgrade(db) {
-                // 新库（oldVersion = 0）会走到这里；已有库若已创建则跳过
+               
                 if (!db.objectStoreNames.contains("images")) {
                     db.createObjectStore("images", { keyPath: "id" });
                 }

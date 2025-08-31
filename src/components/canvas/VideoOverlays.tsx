@@ -29,11 +29,11 @@ export const VideoOverlays: React.FC<VideoOverlaysProps> = ({
   // Keep track of video refs
   const videoRefs = useRef<Map<string, HTMLVideoElement>>(new Map());
 
-  // 统一的 UI 常量（与 ImageOverlays 对齐的尺寸/边距）
-  const ICON_SIZE = 28;              // px（屏幕空间，不跟随缩放）
-  const ICON_MARGIN = 6;             // px（画布空间，跟随缩放）
+  // Unified UI constants (dimensions/margins aligned with ImageOverlays)
+  const ICON_SIZE = 28;              // px (screen space, does not scale)
+  const ICON_MARGIN = 6;             // px (canvas space, scales with viewport)
 
-  // Handle play/pause state changes (仅对非 isAudio 的视频生效；找不到元素会直接 return)
+  // Handle play/pause state changes (only for non-isAudio videos; returns directly if element is not found)
   useEffect(() => {
     videos.forEach((video) => {
       const videoEl = videoRefs.current.get(video.id);
@@ -59,7 +59,7 @@ export const VideoOverlays: React.FC<VideoOverlaysProps> = ({
     });
   }, [videos]);
 
-  // 固定音频占位渲染
+  // Render a fixed placeholder for audio
   const renderAudioPlaceholder = (video: PlacedVideo) => {
     const top = video.y * viewport.scale + viewport.y;
     const left = video.x * viewport.scale + viewport.x;
@@ -78,18 +78,18 @@ export const VideoOverlays: React.FC<VideoOverlaysProps> = ({
           zIndex: 10,
           transform: `rotate(${video.rotation || 0}deg)`,
           transformOrigin: "0 0",
-          pointerEvents: "none", // 与原 video 一致，避免抢事件
+          pointerEvents: "none", // Consistent with the original video to avoid capturing events
           background:
             "linear-gradient(135deg, rgba(15,15,20,0.9) 0%, rgba(30,30,40,0.9) 100%)",
           borderRadius: 6,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          // 轻微描边，便于在复杂背景上看清楚
+          // Slight stroke to make it clearly visible on complex backgrounds
           boxShadow: "0 0 0 1px rgba(255,255,255,0.06) inset",
         }}
       >
-        {/* 简洁的音频图标（SVG），随容器缩放 */}
+        {/* Simple audio icon (SVG), scales with the container */}
         <svg
           aria-hidden="true"
           viewBox="0 0 24 24"
@@ -107,7 +107,7 @@ export const VideoOverlays: React.FC<VideoOverlaysProps> = ({
             opacity={0.9}
           />
         </svg>
-        {/* 角标文字，提示是音频（可选） */}
+        {/* Corner text to indicate it's an audio (optional) */}
         <div
           style={{
             position: "absolute",
@@ -131,7 +131,7 @@ export const VideoOverlays: React.FC<VideoOverlaysProps> = ({
 
     if (!hasMeta || !isSelected) return null;
 
-    // 顶部右侧坐标（不考虑旋转，与 ImageOverlays 一致）
+    // Top-right coordinates (ignoring rotation, consistent with ImageOverlays)
     const top = video.y * viewport.scale + viewport.y + ICON_MARGIN * viewport.scale;
     const left =
       (video.x + video.width) * viewport.scale +
@@ -157,8 +157,8 @@ export const VideoOverlays: React.FC<VideoOverlaysProps> = ({
           left,
           width: ICON_SIZE,
           height: ICON_SIZE,
-          zIndex: 11,           // 高于视频/音频占位
-          pointerEvents: "auto" // 确保可点
+          zIndex: 11,           // Above video/audio placeholder
+          pointerEvents: "auto" // Ensure it's clickable
         }}
       >
         <Info className="h-3 w-3" />
@@ -169,7 +169,7 @@ export const VideoOverlays: React.FC<VideoOverlaysProps> = ({
     <>
       {videos.map((video) => (
         <React.Fragment key={`controls-${video.id}`}>
-          {/* 当 isAudio = true，用固定图标占位；否则渲染真实 <video> */}
+          {/* When isAudio = true, use a fixed icon placeholder; otherwise, render the real <video> */}
           {video.isAudio ? (
             renderAudioPlaceholder(video)
           ) : (
@@ -209,12 +209,12 @@ export const VideoOverlays: React.FC<VideoOverlaysProps> = ({
                 // First, select the video if not already selected
                 if (!selectedIds.includes(video.id)) {
                   setVideos((prev) => {
-                    // 触发一次渲染，外层自己维护 selectedIds
+                    // Trigger a render, the outer layer maintains selectedIds itself
                     return prev;
                   });
                 }
 
-                // 将右键事件转发到 Konva canvas
+                // Forward the right-click event to the Konva canvas
                 const konvaContainer = document.querySelector(".konvajs-content");
                 if (konvaContainer) {
                   const canvas = konvaContainer.querySelector("canvas");
@@ -288,7 +288,7 @@ export const VideoOverlays: React.FC<VideoOverlaysProps> = ({
             />
           )}
 
-          {/* 播放指示器：仅对非音频、已加载且未播放时显示 */}
+          {/* Play indicator: only shown for non-audio, loaded, and paused videos */}
           {(!video.isAudio) && !video.isPlaying && video.isLoaded && (
             <div
               className="absolute bg-none text-white px-1 py-0.5"
@@ -309,8 +309,8 @@ export const VideoOverlays: React.FC<VideoOverlaysProps> = ({
             </div>
           )}
           {!isDraggingVideo && renderMetaButton(video)}
-
-          {/* 控制条：保持原有条件（音频/视频都可使用同一套控制逻辑，如果你希望音频不显示，可在此加 !video.isAudio 判断） */}
+ 
+          {/* Controls bar: maintain original conditions (both audio/video can use the same control logic, if you want to hide it for audio, you can add an !video.isAudio check here) */}
           {selectedIds.includes(video.id) && selectedIds.length === 1 && (
             <div
               style={{

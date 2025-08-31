@@ -5,10 +5,10 @@ import type { PlacedVideo } from '@/types/canvas';
 import { Button } from '@/components/ui';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/shadcn-ui/dialog';
 import { X } from 'lucide-react';
-import { trimAudio, trimVideo, getMediaDuration } from '@/utils/tools/MediaProcess'; // ⬅️ 路径按你项目实际调整
+import { trimAudio, trimVideo, getMediaDuration } from '@/utils/tools/MediaProcess'; 
 
 interface Props {
-  video: PlacedVideo; // video.src 可以是音频或视频
+  video: PlacedVideo; // video.src can be audio or video
   setVideos?: React.Dispatch<React.SetStateAction<PlacedVideo[]>>;
   isOpen: boolean;
   onClose: () => void;
@@ -63,7 +63,7 @@ export const TrimMediaDialog: React.FC<Props> = ({ video, setVideos, isOpen, onC
     if (!el) return;
 
     const onLoaded = () => {
-      // 优先用 MediaElement 的 duration，但用 getMediaDuration 兜底（来自 MediaProcess）
+      // Prioritize MediaElement's duration, but use getMediaDuration as a fallback (from MediaProcess)
       const d1 = el.duration || 0;
       setDuration(d1);
       setCurrentTime(el.currentTime || 0);
@@ -79,14 +79,14 @@ export const TrimMediaDialog: React.FC<Props> = ({ video, setVideos, isOpen, onC
     };
   }, [isOpen]);
 
-  // 初次打开时用 fetch -> File -> getMediaDuration 获取精确长度
+  // On first open, use fetch -> File -> getMediaDuration to get the precise duration
   useEffect(() => {
     if (!isOpen) return;
     (async () => {
       try {
         const res = await fetch(video.src);
         const blob = await res.blob();
-        // 尝试从 URL 提取扩展名；取不到按媒体类型默认
+        // Try to extract the extension from the URL; if not found, default based on media type
         const { filename, ext } = extsFromUrl(video.src);
         const finalExt = ext || (blob.type.startsWith('audio/') ? 'mp3' : 'mp4');
         const finalName = /\.[a-zA-Z0-9]+$/.test(filename) ? filename : `${filename}.${finalExt}`;
@@ -96,7 +96,7 @@ export const TrimMediaDialog: React.FC<Props> = ({ video, setVideos, isOpen, onC
         setStart(0);
         setEnd(d || 0);
       } catch {
-        // 失败则退回 media element 的 duration
+        // On failure, fall back to the media element's duration
         setStart(0);
         setEnd((mediaRef.current?.duration || 0) || 0);
       }
@@ -111,7 +111,7 @@ export const TrimMediaDialog: React.FC<Props> = ({ video, setVideos, isOpen, onC
     onClose();
   }, [onClose]);
 
-  // 视觉化的区间条（中间高亮选中区域）
+  // Visual range bar (highlighted selected area in the middle)
   const RangeBar: React.FC = () => {
     const pctStart = duration ? (start / duration) * 100 : 0;
     const pctEnd = duration ? (end / duration) * 100 : 0;
@@ -147,7 +147,7 @@ export const TrimMediaDialog: React.FC<Props> = ({ video, setVideos, isOpen, onC
     return new File([blob], finalName, { type: blob.type || (finalExt === 'mp3' ? 'audio/mpeg' : 'video/mp4') });
   }, []);
 
-  // 把裁剪后的媒体添加到画布
+  // Add the trimmed media to the canvas
   const addVideoToCanvas = useCallback(async (outFile: File) => {
     if (!setVideos) return;
     console.log(' addVideoToCanvas outFile', outFile)
@@ -155,7 +155,7 @@ export const TrimMediaDialog: React.FC<Props> = ({ video, setVideos, isOpen, onC
     let displayW = 240;
     let displayH = 135; // 16:9 
     if (!isAudio) {
-      // 尝试读取视频的真实尺寸
+      // Try to read the actual dimensions of the video
       const url = URL.createObjectURL(outFile);
       try {
         const size = await new Promise<{ w: number; h: number }>((resolve, reject) => {
@@ -243,7 +243,7 @@ export const TrimMediaDialog: React.FC<Props> = ({ video, setVideos, isOpen, onC
         </div>
 
         <div className="flex-1 flex flex-col gap-4 overflow-hidden">
-          {/* 统一用 <video> 做预览（音频也可播放） */}
+          {/* Use <video> for preview (audio can also be played) */}
           <div className="flex-1 flex items-center justify-center overflow-auto p-4">
             {video.isAudio ? (
               <audio
@@ -263,12 +263,12 @@ export const TrimMediaDialog: React.FC<Props> = ({ video, setVideos, isOpen, onC
               />)}
           </div>
 
-          {/* 区间滑块 */}
+          {/* Range slider */}
           <div className="flex flex-col gap-3 px-1">
             <RangeBar />
 
             <div className="relative w-full">
-              {/* 双滑块：起点 */}
+              {/* Double slider: start point */}
            
               <input
                 type="range"
@@ -279,7 +279,7 @@ export const TrimMediaDialog: React.FC<Props> = ({ video, setVideos, isOpen, onC
                 onChange={(e) => onStartChange(parseFloat(e.target.value))}
                 className="w-full appearance-none h-2 bg-transparent pointer-events-auto"
               />
-              {/* 终点 */}
+              {/* End point */}
               <input
                 type="range"
                 min={0.001}

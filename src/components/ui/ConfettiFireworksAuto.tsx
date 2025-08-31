@@ -38,13 +38,13 @@ export function ConfettiFireworks() {
             });
         }, 250);
     };
-
+ 
     useEffect(() => {
-        // 如果查询参数 `celebrate` 为 `1`，启动 confetti 效果
+        // if query parameter `celebrate` is `1`, start confetti effect
         if (searchParams.get("payment") === "success") {
             startConfetti();
         }
     }, []);
 
-    return null; // 无任何显示内容
+    return null; // no display content
 }

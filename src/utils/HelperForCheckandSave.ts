@@ -12,7 +12,7 @@ export function setCookie(name: string, value: string, hours: number): void {
 }
 export function setCookieForToday(name: string, value: string): void {
   const date = new Date();
-  // 设置日期为当天午夜
+  // Set the date to midnight of the current day
   date.setHours(23, 59, 59, 999);
   const expires = "; expires=" + date.toUTCString();
   document.cookie = name + "=" + (encodeURIComponent(value) || "") + expires + "; path=/";
@@ -33,21 +33,21 @@ export function deleteCookie(name: string): void {
 export const setLocalStorageWithExpiry = (key: string, value: any, hours: number): void => {
   const now = new Date();
 
-  // 将小时数转换为毫秒数
+  // Convert hours to milliseconds
   const ttl = hours * 60 * 60 * 1000;
 
-  // 包装存储的数据和过期时间
+  // Wrap the stored data and expiration time
   const item = {
     value: value,
     expiry: Date.now() + ttl
   };
   localStorage.setItem(key, JSON.stringify(item));
 };
-
+ 
 export const getLocalStorageWithExpiry = (key: string): any | null => {
   const itemStr = localStorage.getItem(key);
 
-  // 如果localStorage中没有这个键，返回null
+  // If the key is not in localStorage, return null
   if (!itemStr) {
     return null;
   }
@@ -55,9 +55,9 @@ export const getLocalStorageWithExpiry = (key: string): any | null => {
   const item = JSON.parse(itemStr);
   const now = new Date();
   console.debug("Date.now:", Date.now())
-  // 检查是否过期
+  // Check if it has expired
   if (Date.now() > parseInt(item.expiry, 10)) {
-    // 如果过期了，删除localStorage中的数据，并返回null
+    // If it has expired, delete the data from localStorage and return null
     localStorage.removeItem(key);
     return null;
   }
@@ -85,7 +85,7 @@ export const createExpireStorage = (baseStorage: Storage, ttl: number) => {
           value: string
           timestamp: number
         }
-        // 如果超过 TTL，就删掉缓存并返回 null
+        // If TTL is exceeded, delete the cache and return null
         if (Date.now() - timestamp > ttl) {
           baseStorage.removeItem(name)
           return null

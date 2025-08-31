@@ -8,7 +8,7 @@ import { ApiInputSchema,} from "@/lib/ai-model-setting/commonModel";
 export type Transform =
     | { op: 'not' }                               // !v（ disable -> enable）
     | { op: 'enumMap'; map: Record<string, any>; default?: any } // enum map
-    | { op: 'coalesce' }                          //  choose first non-empty  (如：data[key1] || data[key2] || data[key3])
+    | { op: 'coalesce' }                          //  choose first non-empty  (eg：data[key1] || data[key2] || data[key3])
     | { op: 'randomInt'; min?: number; max?: number } // generate random integer
     | { op: 'array' }                             // wrap in array
     | { op: 'toNumber' }                     // convert to number (optional)

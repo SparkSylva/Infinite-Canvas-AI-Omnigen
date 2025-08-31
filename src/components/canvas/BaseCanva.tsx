@@ -105,7 +105,7 @@ export default function MinimalInfiniteCanvas({ className = "", containerHeight 
   /* ----------------------- state & refs ----------------------- */
 
   const [images, setImages] = useState<PlacedImage[]>([]);
-  const [videos, setVideos] = useState<PlacedVideo[]>([]); // 为MiniMap和ContextMenu组件添加videos状态
+  const [videos, setVideos] = useState<PlacedVideo[]>([]);
   const [hiddenVideoControlsIds, setHiddenVideoControlsIds] = useState<
     Set<string>
   >(new Set());
@@ -121,7 +121,7 @@ export default function MinimalInfiniteCanvas({ className = "", containerHeight 
   // history
   const [history, setHistory] = useState<HistoryState[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
-  // CanvasContextMenu 相关状态
+  // CanvasContextMenu 
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationStatus, setGenerationStatus] = useState("");
 

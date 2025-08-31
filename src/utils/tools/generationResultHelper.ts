@@ -55,7 +55,7 @@ async function fetchWithRetry(
         } catch (err) {
             lastErr = err;
             if (attempt < retries) {
-                // 简单线性退避
+                // simple linear backoff
                 await new Promise((r) => setTimeout(r, backoffMs * (attempt + 1)));
                 continue;
             }
@@ -66,7 +66,7 @@ async function fetchWithRetry(
 
 
 
-// 小工具：用 <img> 测图片尺寸，失败则抛错 
+// small tool: use <img> to measure image size, throw error if failed
 function measureImageByURL(objectUrl: string): Promise<{ naturalWidth: number; naturalHeight: number }> {
     return new Promise((resolve, reject) => {
         const img = new Image();
@@ -141,7 +141,7 @@ function guessVideoMimeFromExt(url: string): string | null {
     return null;
 }
 
-
+ 
 export async function toVideoObjectUrl(
     url: string
 ): Promise<{ objectUrl: string; naturalWidth: number; naturalHeight: number; duration?: number; blob: Blob; mime?: string } | null> {
@@ -152,7 +152,7 @@ export async function toVideoObjectUrl(
         const headerType = resp.headers.get('content-type')?.split(';')[0]?.trim() || '';
         let blob = await resp.blob();
 
-        // 如果 blob.type 缺失或是泛型，那就修正它
+        // if blob.type is missing or generic, then fix it
         const needsFix =
             !blob.type ||
             blob.type === 'application/octet-stream' ||

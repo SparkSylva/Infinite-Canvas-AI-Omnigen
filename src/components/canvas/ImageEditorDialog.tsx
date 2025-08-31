@@ -505,7 +505,7 @@ export const ImageEditorDialog: React.FC<Props> = ({ image, setImages, isOpen, o
                 onClick={() => handleToolClick('arrow')}
                 className="flex items-center gap-2"
               >
-                <MousePointer className="h-4 w-4" />  {/* 你也可以换成 lucide-react 的 ArrowRightCircle 或者其他箭头图标 */}
+                <MousePointer className="h-4 w-4" /> 
                 <span className="hidden sm:inline">Arrow</span>
               </Button>
             </div>
@@ -817,10 +817,10 @@ export const ImageEditorDialog: React.FC<Props> = ({ image, setImages, isOpen, o
                         onTransformEnd={(e) => {
                           const node = e.target;
                           const sRaw = Math.max(Math.abs(node.scaleX()), Math.abs(node.scaleY()));
-                          // 适当夹取，避免极小或过大导致数值不稳定
+                   
                           const s = Math.min(Math.max(sRaw, 0.2), 10);
 
-                          // 把缩放烘焙进 points / strokeWidth，然后把节点 scale 复位为 1
+                     
                           const basePoints = element.points || [-50, 0, 50, 0];
                           const bakedPoints = basePoints.map((v) => v * s);
 
@@ -831,7 +831,7 @@ export const ImageEditorDialog: React.FC<Props> = ({ image, setImages, isOpen, o
                             x: node.x(),
                             y: node.y(),
                             points: bakedPoints,
-                            strokeWidth: (element.strokeWidth || 2) * s, // 可选：一起等比
+                            strokeWidth: (element.strokeWidth || 2) * s, 
                           });
                         }}
                       // onTransformEnd={(e) => {

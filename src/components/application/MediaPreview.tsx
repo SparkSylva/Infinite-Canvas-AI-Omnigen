@@ -3,39 +3,32 @@ import { useWatch, type Control } from "react-hook-form";
 import { Button } from "@/components/ui";
 import { X, Upload as UploadIcon } from "lucide-react";
 import { common_model_serise_setting, ModelSeriesSetting, SupportFileSetting } from '@/lib/ai-model-setting/commonModel';
-/** 建议用你项目内的定义；这里声明一个最小类型以避免命名冲突 */
-// type MediaSupportConfig = {
-//   name: string;                 // 表单字段名，如 'control_files'
-//   label?: string;               // 展示用标题
-//   type: "audio" | "video" | string;
-//   isSupport?: number;           // 允许的最大文件数
-// };
 
 function useObjectUrl(fileOrUrl: any) {
     const [url, setUrl] = React.useState<string | null>(null);
 
     React.useEffect(() => {
-        // 清空
+   
         if (!fileOrUrl) {
             setUrl(null);
             return;
         }
 
-        // 字符串：空串视为 null，其他原样用
+       
         if (typeof fileOrUrl === "string") {
             const str = fileOrUrl.trim();
             setUrl(str.length > 0 ? str : null);
             return;
         }
 
-        // Blob/File：创建对象 URL，并在卸载时回收
+  
         if (fileOrUrl instanceof Blob) {
             const u = URL.createObjectURL(fileOrUrl);
             setUrl(u);
             return () => URL.revokeObjectURL(u);
         }
 
-        // 其他类型兜底
+      
         setUrl(null);
     }, [fileOrUrl]);
 
@@ -62,7 +55,7 @@ type MediaItemProps = {
     isIgnored: boolean;
     supportType: "audio" | "video" | string;
     ignoredText?: string;
-    unsupportedText?: string; // 仅用于 limit=0 这种不支持场景的文案
+    unsupportedText?: string; 
     onRemove: () => void;
 };
 
@@ -161,7 +154,7 @@ type MediaPreviewProps = {
     unsupportedText?: string;
 };
 
-/** 仅订阅 support.name 字段；单列项 MediaItem 再 memo，最大限度减少重渲。 */
+
 export const MediaPreview = React.memo(function MediaPreview({
     support,
     control,

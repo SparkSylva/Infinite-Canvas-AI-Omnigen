@@ -129,29 +129,29 @@ export function ModelSettingsDialog({
     }
   }, [modelCategories, modelSeries, selectedCategory])
 
-  // 扁平列表（稳定，用于 currentModel 查找）
+  // Flattened list (stable, for currentModel lookup)
   const flatModels = React.useMemo(
     () => Object.values(modelSeries || {}).flat(),
     [modelSeries]
   )
 
-  // 当前选择的模型对象（用于触发按钮处的小徽标）
+  // Currently selected model object (for the small badge on the trigger button)
   const currentModelObj = React.useMemo(() => {
     if (!currentModel) return undefined
     return flatModels.find((m) => m.id === currentModel)
   }, [flatModels, currentModel])
 
-  // 点击选择模型
+  // Click to select a model
   const handleModelClick = React.useCallback(
     (model: ModelSeriesSetting) => {
       onModelSelect(model)
-      // 不自动关闭，保持原交互：让用户可以继续看/切换
-      // 如需选择后自动关闭可在此处 setDialogOpen(false)
-      // 注意：如果使用受控模式，这里应该调用传入的 onOpenChange(false)
+      // Do not close automatically, maintain original interaction: allow users to continue viewing/switching
+      // If you need to close automatically after selection, you can setDialogOpen(false) here
+      // Note: If using controlled mode, should call the passed onOpenChange(false) here
     },
     [onModelSelect]
   )
-  // 当前分类下的模型列表
+  // Model list under the current category
   const list = React.useMemo<ModelSeriesSetting[]>(
     () => (selectedCategory ? modelSeries[selectedCategory] ?? [] : []),
     [modelSeries, selectedCategory]
@@ -363,11 +363,11 @@ interface AdapterModelSettingsDialogProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   triggerText?: string;
-  supportCustonModel?: SupportCustonModelOptions;   // 修改：从 boolean 改为对象
+  supportCustonModel?: SupportCustonModelOptions;   // change: from boolean to object
 }
-interface SupportCustonModelOptions {               // 新增：对象参数
-  supportedBases: string;                         // 必填：支持的基座/适配器名称（如 "sdxl", "flux", "kling" 等）
-  storageKey?: string;                              // 可选：自定义存储 key（默认自动生成）
+interface SupportCustonModelOptions {               // new: object parameter
+  supportedBases: string;                         // required
+  storageKey?: string;                              // optional
 }
 
 
@@ -378,7 +378,7 @@ export function AdapterModelSettingsDialog({
   open,
   onOpenChange,
   triggerText = "Choose Settings",
-  supportCustonModel,                               // 修改：对象
+  supportCustonModel,                               // Change: object
 }: AdapterModelSettingsDialogProps) {
   /* ----------------------- state ----------------------- */
   const [selectedCategory, setSelectedCategory] = React.useState<string>("");
@@ -390,14 +390,14 @@ export function AdapterModelSettingsDialog({
   const dialogOpen = isControlled ? open : internalDialogOpen
   const setDialogOpen = isControlled ? onOpenChange : setInternalDialogOpen
 
-  // ====== 自定义模型持久化配置（新增）======
+  // ====== Custom Model Persistence Configuration (New) ======
   const enabledCustom = Boolean(supportCustonModel?.supportedBases?.length);
   const autoStorageKey =
     "adapter.customModels:" + (supportCustonModel?.supportedBases || "default");
   const STORAGE_KEY = supportCustonModel?.storageKey ?? autoStorageKey;
   const EMPTY_CUSTOM_MODELS: ReadonlyArray<AdapterModelSeriesSetting> = Object.freeze([]);
 
-  // 订阅持久化里的自定义模型数组
+  // Subscribe to the custom model array in persistence
   const savedCustomModels = useUserSettingStore(
     React.useCallback(
       (s) =>
@@ -405,12 +405,12 @@ export function AdapterModelSettingsDialog({
         ?? (EMPTY_CUSTOM_MODELS as AdapterModelSeriesSetting[]),
       [STORAGE_KEY]
     ),
-    // 用任一即可：
+    // Either one is fine:
     // Object.is
 
   );
 
-  // 写持久化的帮助函数
+  // Helper function for writing to persistence
   const saveCustomModels = React.useCallback(
     (arr: AdapterModelSeriesSetting[]) => {
       useUserSettingStore.getState().setSetting(STORAGE_KEY, arr as any, { persistent: true });
@@ -418,17 +418,17 @@ export function AdapterModelSettingsDialog({
     [STORAGE_KEY]
   );
 
-  // 本地态（用于即时编辑/新增），初始用 saved 值
+  // Local state (for instant editing/adding), initialized with saved value
   const [customModels, setCustomModels] = React.useState<AdapterModelSeriesSetting[]>(
     savedCustomModels
   );
 
-  // 持久化 -> 本地态 同步（当别处修改时）
+  // Persistence -> Local state synchronization (when modified elsewhere)
   React.useEffect(() => {
     setCustomModels(savedCustomModels);
   }, [savedCustomModels]);
 
-  // 表单状态（新增）
+  // Form state (new)
   const [newName, setNewName] = React.useState("");
   const [newUrl, setNewUrl] = React.useState("");
   const [newDesc, setNewDesc] = React.useState("");
@@ -436,7 +436,7 @@ export function AdapterModelSettingsDialog({
   const [newBase, setNewBase] = React.useState<string>("");
   const [checkAddModelRequire, setCheckAddModelRequire] = React.useState<string>("");
 
-  // 初始化选中分类
+  // Initialize selected category
   React.useEffect(() => {
     if (Object.keys(modelSeries).length > 0 && !selectedCategory) {
       setSelectedCategory(Object.keys(modelSeries)[0]);
@@ -535,14 +535,14 @@ export function AdapterModelSettingsDialog({
       name,
       description: desc || undefined,
       model: [{ path: url, scale }],
-      tag: ["custom", `base:${base}`],   // 用 tag 标识基座，避免改类型
+      tag: ["custom", `base:${base}`],   // Use tag to identify the base to avoid changing the type
       badge: ["custom"],
       image: [],
     };
 
     const next = [newModel, ...customModels];
     setCustomModels(next);
-    saveCustomModels(next);              // 持久化
+    saveCustomModels(next);              // Persist
     onModelSelect(newModel);
     toast.success(`Added: ${name}`);
 
@@ -557,7 +557,7 @@ export function AdapterModelSettingsDialog({
   const handleRemoveCustomModel = (id: string) => {
     const next = customModels.filter((m) => m.id !== id);
     setCustomModels(next);
-    saveCustomModels(next);              // 持久化
+    saveCustomModels(next);              // Persist
     toast.success("Deleted");
   };
 
@@ -627,7 +627,7 @@ export function AdapterModelSettingsDialog({
             </header>
 
             <div className="flex flex-1 flex-col gap-4 overflow-y-auto p-1">
-              {/* 新增：自定义模型表单 */}
+              {/* New: Custom model form */}
               {enabledCustom && selectedCategory === "custom" && (
                 <Card className="border-dashed">
                   <CardHeader>
@@ -672,7 +672,7 @@ export function AdapterModelSettingsDialog({
                 </Card>
               )}
 
-              {/* 卡片列表 */}
+              {/* Card list */}
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 llg:grid-cols-5 gap-2">
                 {list.length > 0 ? (
                   list.map((model) => {
@@ -728,18 +728,18 @@ export function AdapterModelSettingsDialog({
                           </CardFooter>
                         </Card>
 
-                        {/* 未选中状态的 overlay */}
+                        {/* Overlay for unselected state */}
                         {!isSelected && (
                           <div className="absolute inset-0 bg-background/20 rounded-lg pointer-events-none transition-opacity duration-200" />
                         )}
 
-                        {/* 选中对勾 */}
+                        {/* Selected checkmark */}
                         {isSelected && !isCustom && (
                           <div className="absolute bottom-2 right-2 bg-primary text-primary-foreground rounded-full p-2 shadow-lg shadow-primary/50 z-10 animate-in zoom-in-95 duration-200">
                             <CheckIcon className="w-4 h-4" />
                           </div>
                         )}
-                        {/* 自定义项的删除按钮（只在 custom 分类时显示） */}
+                        {/* Delete button for custom items (only displayed in the custom category) */}
                         {isCustom && (
                           <Button
                             type="button"
@@ -774,7 +774,7 @@ export function AdapterModelSettingsDialog({
   );
 }
 interface SupportCustomPromptOptions {
-  storageKey?: string; // 默认: "prompt.customPresets"
+  storageKey?: string; // Default: "prompt.customPresets"
 }
 interface PromptSettingsDialogProps {
   modelSeries: Record<string, any[]>;
@@ -808,12 +808,12 @@ export function PromptSettingsDialog({
   const setDialogOpen = isControlled ? onOpenChange : setInternalDialogOpen
 
   // custom prompt logic
-  // ===== 自定义 Prompt 持久化配置（新增） =====
-  const enabledCustom = !!supportCustomPrompt?.storageKey; // 默认启用“自定义 Prompt”能力
+  // ===== Custom Prompt Persistence Configuration (New) =====
+  const enabledCustom = !!supportCustomPrompt?.storageKey; // Enable "Custom Prompt" capability by default
   const STORAGE_KEY =
     supportCustomPrompt?.storageKey ?? "prompt.customPresets";
   const EMPTY_CUSTOM_PRESETS: ReadonlyArray<StylePreset> = Object.freeze([]);
-  // 订阅持久化中的自定义 prompts
+  // Subscribe to custom prompts in persistence
   const savedCustomPresets = useUserSettingStore(
     React.useCallback(
       (s) =>
@@ -823,7 +823,7 @@ export function PromptSettingsDialog({
     )
   );
 
-  // 写持久化
+  // Write to persistence
   const saveCustomPresets = React.useCallback(
     (arr: StylePreset[]) => {
       useUserSettingStore
@@ -833,15 +833,16 @@ export function PromptSettingsDialog({
     [STORAGE_KEY]
   );
 
-  // 本地态自定义 prompts
+  // Local state for custom prompts
   const [customPresets, setCustomPresets] = React.useState<StylePreset[]>(
     savedCustomPresets
   );
 
-  // 持久化 -> 本地态 同步（当别处修改时）
+  // Persistence -> Local state synchronization (when modified elsewhere)
   React.useEffect(() => {
     setCustomPresets(savedCustomPresets);
   }, [savedCustomPresets]);
+
 
 
 
@@ -854,7 +855,7 @@ export function PromptSettingsDialog({
     }
   }, [modelSeries, selectedCategory])
 
-  // ---- 左侧分类（增加 Custom）----
+  // ---- Left-side categories (add Custom) ----
   const modelCategories = React.useMemo(() => {
     const keys = Object.keys(modelSeries || {});
     const base = keys.map((category) => ({
@@ -886,7 +887,7 @@ export function PromptSettingsDialog({
   }, [modelCategories, selectedCategory]);
 
 
-  // ---- 工具：拿到“所有内置” presets（跨全部分类，用于去重/生成唯一 id）----
+  // ---- Utility: Get all "built-in" presets (across all categories, for deduplication/generating unique IDs) ----
   const allBuiltinPresets = React.useMemo<StylePreset[]>(() => {
     const out: StylePreset[] = [];
     Object.values(modelSeries || {}).forEach((items: any[]) => {
@@ -897,7 +898,7 @@ export function PromptSettingsDialog({
     return out;
   }, [modelSeries]);
 
-  // 点击选择模型
+  // Click to select model
   const handleModelClick = React.useCallback(
     (model: StylePreset) => {
       onModelSelect(model)
@@ -910,7 +911,7 @@ export function PromptSettingsDialog({
     [onModelSelect]
   )
 
-  // ---- 当前分类下的 presets（支持 custom）----
+  // ---- Presets under the current category (supports custom) ----
   const displayPresets = React.useMemo<StylePreset[]>(() => {
     if (!selectedCategory) return [];
     if (selectedCategory === "custom") return customPresets;
@@ -925,7 +926,7 @@ export function PromptSettingsDialog({
 
 
 
-  // 获取当前分类下的所有 preset
+  // Get all presets under the current category
   const currentCategoryPresets = React.useMemo(() => {
     if (!selectedCategory || !modelSeries[selectedCategory]) return []
 
@@ -942,7 +943,7 @@ export function PromptSettingsDialog({
   }, [selectedCategory, modelSeries])
 
 
-  // ---------- 自定义 Prompt 逻辑（新增） ----------
+  // ---------- Custom Prompt Logic (New) ----------
   const slugify = (s: string) =>
     s.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
@@ -958,7 +959,7 @@ export function PromptSettingsDialog({
     return cand;
   };
 
-  // 表单状态
+  // Form state
   const [newName, setNewName] = React.useState("");
   const [newPrompt, setNewPrompt] = React.useState("");
 
@@ -984,10 +985,10 @@ export function PromptSettingsDialog({
     saveCustomPresets(next);
     toast.success(`Added: ${name}`);
 
-    // 切到 Custom 分类，方便看到新增
+    // Switch to Custom category to see the new addition
     if (enabledCustom) setSelectedCategory("custom");
 
-    // 重置表单
+    // Reset form
     setNewName("");
     setNewPrompt("");
     setCheckAddPromptRequire("");
@@ -1069,7 +1070,7 @@ export function PromptSettingsDialog({
               </div>
             </header>
 
-            {/* Mobile 分类选择 */}
+            {/* Mobile category selection */}
             <div className="md:hidden pb-4 z-10">
               <div className="flex flex-wrap gap-2 ">
                 {modelCategories.map((category) => (
@@ -1088,7 +1089,7 @@ export function PromptSettingsDialog({
             </div>
 
             <div className="flex flex-1 flex-col gap-4 overflow-y-auto p-1">
-              {/* 显示当前分类下的所有 preset */}
+              {/* Display all presets in the current category */}
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 llg:grid-cols-5 gap-2">
                 {displayPresets.length > 0 ? (
                   displayPresets.map((preset) => {
@@ -1150,19 +1151,19 @@ export function PromptSettingsDialog({
 
                         </Card>
 
-                        {/* 未选中状态的 overlay */}
+                        {/* Overlay for unselected state */}
                         {!isSelected && (
                           <div className="absolute inset-0 bg-background/20 rounded-lg pointer-events-none transition-opacity duration-200" />
                         )}
 
-                        {/* 选中状态对勾 */}
+                        {/* Checkmark for selected state */}
                         {isSelected && !isCustom && (
                           <div className="absolute bottom-2 right-2 bg-primary text-primary-foreground rounded-full p-2 shadow-lg shadow-primary/50 z-10 animate-in zoom-in-95 duration-200">
                             <CheckIcon className="w-4 h-4" />
                           </div>
                         )}
 
-                        {/* 自定义项的删除按钮（只在 custom 分类时显示） */}
+                        {/* Delete button for custom items (only displayed in the custom category) */}
                         {isCustom && (
                           <Button
                             type="button"

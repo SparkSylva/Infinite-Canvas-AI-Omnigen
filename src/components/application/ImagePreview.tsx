@@ -3,23 +3,23 @@ import { useWatch, type Control } from "react-hook-form";
 import { Button } from "@/components/ui";
 import { X } from "lucide-react";
 
-/** 自定义 Hook：Blob -> objectURL；字符串直接用；空值返回 null */
+/** custom Hook: Blob -> objectURL; string directly use; null return null */
 function useObjectUrl(fileOrUrl: any) {
   const [url, setUrl] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    // 清空
+   
     if (!fileOrUrl) {
       setUrl(null);
       return;
     }
-    // 字符串：空串视为 null
+    // string: empty string return null
     if (typeof fileOrUrl === "string") {
       const s = fileOrUrl.trim();
       setUrl(s.length ? s : null);
       return;
     }
-    // Blob/File：创建 URL，卸载时回收
+    // Blob/File: create URL, recycle when unmount
     if (fileOrUrl instanceof Blob) {
       const u = URL.createObjectURL(fileOrUrl);
       setUrl(u);
@@ -39,7 +39,7 @@ type ImagesPreviewProps = {
   setValue: (name: string, value: any) => void;
 };
 
-/** 单个图片条目，内部使用 Hook；避免在 .map 里直接调用 Hook */
+/** single image item, internal use Hook; avoid calling Hook directly in .map */
 const ImageItem = React.memo(function ImageItem({
   file,
   label,
@@ -63,7 +63,7 @@ const ImageItem = React.memo(function ImageItem({
         {label || "Image"}
       </div>
 
-      {/* 避免 src=""：没有 url 就不渲染 img */}
+
       {url ? (
         <img src={url} className="w-auto h-24 object-contain" />
       ) : null}
@@ -81,7 +81,7 @@ const ImageItem = React.memo(function ImageItem({
   );
 });
 
-/** 预览列表组件：只订阅 name 字段；每项由 ImageItem 承载 Hook */
+/** preview list component: only subscribe name field; each item by ImageItem carry Hook */
 export const ImagesPreview = React.memo(function ImagesPreview({
   name,
   label,

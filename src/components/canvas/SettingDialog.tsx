@@ -24,7 +24,7 @@ export const SettingDialog: React.FC<SettingDialogProps> = ({ isOpen, onOpenChan
   );
   const [apiKey, setApiKey] = useState<string>(initialKey);
 
-  // 新增：控制是否永久保存的开关状态
+  // new: control whether to save permanently
   const [isPersistent, setIsPersistent] = useState<boolean>(false);
 
   // when open dialog, sync latest store value (avoid expired when window is changed)
@@ -33,16 +33,16 @@ export const SettingDialog: React.FC<SettingDialogProps> = ({ isOpen, onOpenChan
       const latest = useUserSettingStore.getState().getSetting('falApiKey') as string ?? '';
       setApiKey(latest);
 
-      // 检查是否已经永久保存了设置
+      // check if the setting has been saved permanently
       const hasPersistentKey = useUserSettingStore.getState().hasSetting('falApiKey');
       setIsPersistent(hasPersistentKey);
     }
   }, [isOpen]);
 
-  // 保存设置的函数
+  // save setting function
   const saveApiKey = () => {
     if (isPersistent) {
-      // 永久保存
+      // save permanently
       setSetting('falApiKey', apiKey, {
         persistent: true,
         category: 'auth',
@@ -50,7 +50,7 @@ export const SettingDialog: React.FC<SettingDialogProps> = ({ isOpen, onOpenChan
       });
       toast.success('API key saved permanently');
     } else {
-      // 临时保存
+      // save temporarily
       setSetting('falApiKey', apiKey, {
         category: 'auth',
         description: 'FAL API key (temporary)'
@@ -61,7 +61,7 @@ export const SettingDialog: React.FC<SettingDialogProps> = ({ isOpen, onOpenChan
 
   // 移除设置的函数
   const removeApiKey = () => {
-    // 移除设置（会同时移除临时和永久的）
+    // remove setting (will remove both temporary and permanent)
     removeSetting('falApiKey');
     setApiKey('');
     toast.success('API key removed');

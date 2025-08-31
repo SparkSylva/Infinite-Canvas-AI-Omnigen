@@ -5,7 +5,7 @@ import Konva from "konva";
 
 // some functions for canvas
 
-// 处理文件上传功能 - 将图片文件添加到画布中
+// handle file upload - add image files to canvas
 export const handleFileUpload = (
     files: FileList | null,
     position: { x: number; y: number } | undefined,
@@ -372,7 +372,7 @@ export const handleWheel = (
     // (don't call preventDefault, let the browser handle normal scrolling)
 };
 
-// 处理画布点击 - 开始选择框或画布拖拽
+// handle canvas click - start selection box or canvas dragging
 export const handleMouseDown = (
     e: Konva.KonvaEventObject<MouseEvent>,
     stageRef: React.RefObject<Konva.Stage | null>,
@@ -396,9 +396,9 @@ export const handleMouseDown = (
     if (!pos) return;
 
     const clickedOnEmpty = e.target === e.target.getStage();
-    const mouseButton = e.evt.button; // 0=左键, 1=中键, 2=右键
+    const mouseButton = e.evt.button; // 0=left key, 1=middle key, 2=right key
 
-    // 中键拖动画布（无论是否点在元素上）
+    // middle mouse drag canvas (whether on element or not)
     if (mouseButton === 1) {
         e.evt.preventDefault();
         setIsDraggingCanvas(true);
@@ -406,7 +406,7 @@ export const handleMouseDown = (
         return;
     }
 
-    // Ctrl/Cmd + 左键 拖动画布
+    // Ctrl/Cmd + left key drag canvas
     const shouldDragCanvas = mouseButton === 0 && (e.evt.ctrlKey || e.evt.metaKey);
     if (shouldDragCanvas) {
         setIsDraggingCanvas(true);
@@ -414,10 +414,10 @@ export const handleMouseDown = (
         return;
     }
 
-    // 右键：保持现有选择状态，交由 context menu 处理
+    // right key: keep existing selection state, let context menu handle
     if (mouseButton === 2) return;
 
-    // 仅当点击空白区域时，开始框选
+    // only when clicking on empty area, start selection box
     if (!clickedOnEmpty) return;
 
     const canvasPos = {
@@ -440,7 +440,7 @@ export const handleMouseDown = (
 };
 
 
-// 处理鼠标移动 - 更新选择框或画布拖拽
+// handle mouse move - update selection box or canvas dragging
 export const handleMouseMove = (
     e: Konva.KonvaEventObject<MouseEvent>,
     stageRef: React.RefObject<Konva.Stage | null>,
@@ -494,7 +494,7 @@ export const handleMouseMove = (
     }
 };
 
-// 处理鼠标释放 - 完成选择或画布拖拽
+// handle mouse release - complete selection or canvas dragging
 export const handleMouseUp = (
     isDraggingCanvas: boolean,
     setIsDraggingCanvas: (isDragging: boolean) => void,
@@ -519,13 +519,13 @@ export const handleMouseUp = (
         visible: boolean;
     }>>
 ) => {
-    // 结束画布拖拽
+    // end canvas dragging
     if (isDraggingCanvas) {
         setIsDraggingCanvas(false);
         return;
     }
 
-    // 结束选择框
+    // end selection box
     if (isSelecting) {
         const { startX, startY, endX, endY } = selectionBox;
         const minX = Math.min(startX, endX);
@@ -533,7 +533,7 @@ export const handleMouseUp = (
         const minY = Math.min(startY, endY);
         const maxY = Math.max(startY, endY);
 
-        // 选择框内的图片
+        // images in selection box
         const selectedImages = images.filter(img => {
             const imgCenterX = img.x + img.width / 2;
             const imgCenterY = img.y + img.height / 2;
@@ -542,17 +542,14 @@ export const handleMouseUp = (
         });
 
 
-        // // 选择框内的视频
+        // // videos in selection box
         const selectedVideos = videos.filter(vid => {
             const vidCenterX = vid.x + vid.width / 2;
             const vidCenterY = vid.y + vid.height / 2;
             return vidCenterX >= minX && vidCenterX <= maxX &&
                 vidCenterY >= minY && vidCenterY <= maxY;
         });
-        // if (selectedImages.length > 0) {
-        //     setSelectedIds(selectedImages.map(img => img.id));
-        //     toast.info(`Selected ${selectedImages.length} images`);
-        // }
+ 
         if (selectedImages.length > 0 || selectedVideos.length > 0) {
             setSelectedIds([...selectedImages?.map(img => img.id), ...selectedVideos?.map(vid => vid.id)]);
             // toast.info(`Selected ${selectedImages.length} images and ${selectedVideos.length} videos`);
