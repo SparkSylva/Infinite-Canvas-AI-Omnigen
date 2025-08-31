@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useMemo, useRef, useState, forwardRef, useImperativeHandle, useCallback } from 'react';
-import { z } from "zod"
+
 import { useForm, Controller, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -20,15 +20,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/shadcn-ui/form"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/shadcn-ui/select"
+
 import { cn } from "@/lib/utils"
 import {
     UploadIcon, X, CheckIcon,
@@ -76,14 +68,6 @@ import {
     TooltipTrigger,
 } from "@/components/ui/shadcn-ui/tooltip"
 
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-} from "@/components/ui/shadcn-ui/tabs"
-
-
 
 
 import { DynamicCommonSchema } from '@/server-action/ai-generation/schema/commonSchema';
@@ -94,8 +78,7 @@ import {
     type ModelSeriesSetting, type SupportFileSetting
 } from '@/lib/ai-model-setting/commonModel';
 
-
-import { baseGenerationTypeSettings, GenerationTypeItem, StylePreset, promptLibrarySettings } from '@/lib/ai-model-setting/commonPrompt';
+import { StylePreset, promptLibrarySettings } from '@/lib/ai-model-setting/commonPrompt';
 
 
 import { processFileUrlToApiInput } from '@/utils/tools/ImagePreProcess';
@@ -125,7 +108,6 @@ interface AppProps {
     hideFormFields?: {
         [key: string]: boolean;
     };
-    generationTypeSettings?: Record<string, any[]>;
     // External generation handler: if provided, will be called after validations in handleUserGenerationReady
     onGenerate?: (handleInput: any) => Promise<void> | void;
 }
@@ -137,7 +119,6 @@ const AiMultiGeneratorApp = forwardRef<AiAppRef, AppProps>(({
     modelSeriesSetting = func_model_serise_setting,// common_model_serise_setting,
     initialFormValues,
     hideFormFields,
-    generationTypeSettings = baseGenerationTypeSettings,
     onGenerate
 }, ref) => {
 
@@ -147,7 +128,6 @@ const AiMultiGeneratorApp = forwardRef<AiAppRef, AppProps>(({
 
     const [isUseClientApi, setIsUseClientApi] = useState(false);
     const tempFalApiKey = useSettingValue<string>("falApiKey");
-
 
 
     /* ----------------------- generation tasks ----------------------- */
@@ -178,85 +158,13 @@ const AiMultiGeneratorApp = forwardRef<AiAppRef, AppProps>(({
 
     const [showPromptSettingsDialog, setShowPromptSettingsDialog] = useState(false);
 
-    /* -----------------------  generation type -> category  -> preset prompt ---------------------- */
-    // Category (Tabs) and concrete generation type (Select) state
-    // ---------------------- Utils (pure) ----------------------
-
-    const firstKey = <T extends object>(obj: T): keyof T => Object.keys(obj)[0] as any;
-
-    const getTypeList = (category: string) =>
-        generationTypeSettings[category] ?? [];
-
-    const findTypeItem = (category: string, typeValue: string): GenerationTypeItem | undefined =>
-        getTypeList(category).find(t => t.id === typeValue);
-
-    const getPresetList = (category: string, typeValue: string): StylePreset[] =>
-        findTypeItem(category, typeValue)?.preset ?? [];
-
-    const isPresetValid = (category: string, typeValue: string, preset: string) => {
-        if (preset === 'manual' || preset === 'auto') return true;
-        return getPresetList(category, typeValue).some(p => p.name === preset);
-    };
-
-    const computeInitialState = () => {
-        const cat = String(firstKey(generationTypeSettings));
-        const type = getTypeList(cat)[0]?.id ?? '';
-        return {
-            category: cat,
-            typeValue: type,
-            preset: 'manual' as 'manual' | 'auto' | string,
-            viewedCategory: cat,
-        };
-    };
-
-    // ---------------------- Reducer (single source of truth) ----------------------
-    // type State = ReturnType<typeof computeInitialState>;
-
-    // type Action =
-    //     | { type: 'SET_VIEWED_CATEGORY'; category: string }                               // Only change "viewed"
-    //     | { type: 'COMMIT_TYPE'; category: string; typeValue: string }                    // Actual selection
-    //     | { type: 'SET_PRESET'; preset: State['preset'] };
-
-    // function reducer(state: State, action: Action): State {
-    //     switch (action.type) {
-    //         case 'SET_VIEWED_CATEGORY':
-    //             return { ...state, viewedCategory: action.category }; // 不改已选定
-    //         case 'COMMIT_TYPE': {
-    //             const { category, typeValue } = action;
-    //             const keep = isPresetValid(category, typeValue, state.preset) ? state.preset : 'manual';
-    //             return { ...state, category, typeValue, preset: keep, viewedCategory: category };
-    //         }
-    //         case 'SET_PRESET': {
-    //             const next = isPresetValid(state.category, state.typeValue, action.preset) ? action.preset : 'manual';
-    //             return { ...state, preset: next };
-    //         }
-    //         default:
-    //             return state;
-    //     }
-    // }
-
-    // const [state, dispatch] = React.useReducer(reducer, undefined, computeInitialState);
-
-    // useEffect(() => {
-    //     if (form?.setValue) {
-    //         form.setValue('meta_data.prompt_preset', state.typeValue); // Only store type; preset can also be stored elsewhere
-    //     }
-    // }, [state.typeValue]);
-
-    // const currentTypeItem = React.useMemo(() => findTypeItem(state.category, state.typeValue), [state.category, state.typeValue]);
-    // const currentPresetList = currentTypeItem?.preset ?? [];
-
 
     /* ----------------------- adapter model related  ----------------------- */
     const [selectedAdapterModel, setSelectedAdapterModel] = useState<any | null>(null);
 
     const [promptProcessMode, setPromptProcessMode] = useState<string>('none'); // 'none', 'translate', 'enhance'
     const [generationSrc, setGenerationSrc] = useState<any[]>([
-        // {
-        //     generationUrl: "https://testfile.aiomnigen.com/user_Gen/O9ShO5C1v9sSWlmpUVsbridZ1Jx2b2Dx/cb119a1c-47dc-4c43-a2aa-b59d8a63b7a3.mp4",
-        //     prompt: "extendedInput",
-        //     type: 'video',
-        // },
+   
 
     ]);
     const [tabGenerationType, setTabGenerationType] = useState<string>('images');
@@ -520,7 +428,7 @@ const AiMultiGeneratorApp = forwardRef<AiAppRef, AppProps>(({
 
         const total = baseCredit * resolutionMultiplier * durationMultiplier * (Number.isFinite(outputs) ? outputs : 1);
 
-        return round2(total);
+        return round2(total/10);
     }, [selectedModelConfig, resolution, duration, num_outputs]);
 
 
@@ -1241,21 +1149,7 @@ const AiMultiGeneratorApp = forwardRef<AiAppRef, AppProps>(({
                             )}
                         />
                     )}
-                    {true && (
-                        <div className="text-xs flex flex-col items-center justify-center  text-center">
-
-                            <div className="flex flex-row items-center gap-1 text-muted-foreground ">
-
-                                {activeTasks?.length > 0 ?
-                                    <Loader2 className="h-4 w-4 text-yellow-400 animate-spin" />
-                                    :
-                                    <Crown className="h-4 w-4 text-yellow-400" />
-                                }
-                                <span>{tabLocaleObject?.generation?.maxQueueLabel?.replace('{{current}}', (activeTasks?.length || 0).toString())?.replace('{{max}}', maxGenQueen.toString()) || `Max concurrent: ${activeTasks?.length || 0}/${maxGenQueen}`}</span>
-
-                            </div>
-                        </div>
-                    )}
+              
 
                     <div className='w-full'>
                         <Button
@@ -1362,76 +1256,7 @@ const AiMultiGeneratorApp = forwardRef<AiAppRef, AppProps>(({
 AiMultiGeneratorApp.displayName = 'AiMultiGeneratorApp';
 export default AiMultiGeneratorApp;
 
-export function ParentComponentByAiImageApp() {
-    const aiImageRef = useRef<AiAppRef>(null);
 
-    const handleSetValueAndSubmit = () => {
-        // Set form value
-        aiImageRef.current?.setValue('prompt', 'new AI image prompt');
-        aiImageRef.current?.setValue('model_id', 'flux-dev');
-        // Trigger form submission
-        aiImageRef.current?.handleSubmit()?.();
-        // aiImageRef.current?.handleSubmit(formValues);
-    };
-
-    const handleCustomSubmit = () => {
-        // Use custom submission logic
-        const customSubmitHandler = aiImageRef.current?.handleSubmit((data) => {
-            console.log('custom submit:', data);
-
-            // Add your custom logic here
-        });
-
-        // Call custom submit handler
-        customSubmitHandler?.();
-    };
-
-    const handleDirectFormSubmit = () => {
-        // Access and submit the form directly (another way)
-        aiImageRef.current?.form.handleSubmit((data: any) => {
-            console.log('direct form submit:', data);
-        })();
-    };
-
-    return (
-        <div>
-            <Button onClick={handleSetValueAndSubmit}>
-                set value and submit
-            </Button>
-            <Button onClick={handleCustomSubmit}>
-                custom submit
-            </Button>
-            <Button onClick={handleDirectFormSubmit}>
-                direct form submit
-            </Button>
-            <AiMultiGeneratorApp
-                ref={aiImageRef}
-                initialFormValues={{ prompt: 'initial prompt' }}
-            />
-        </div>
-    );
-}
-
-export function ParentComponentHideedFormByAiImageApp() {
-    const aiImageRef = useRef<AiAppRef>(null);
-
-    const hideFormFields = {
-        model_id: true,
-        generation_type: true,
-
-    }
-
-    return (
-        <div>
-
-            <AiMultiGeneratorApp
-                ref={aiImageRef}
-                initialFormValues={{ prompt: 'initial prompt' }}
-                hideFormFields={hideFormFields}
-            />
-        </div>
-    );
-}
 
 const appLocale = {
     // title and main label

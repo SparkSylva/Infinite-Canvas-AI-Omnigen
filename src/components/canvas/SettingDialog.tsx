@@ -96,7 +96,7 @@ export const SettingDialog: React.FC<SettingDialogProps> = ({ isOpen, onOpenChan
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-green-500">📁</span>
-                      <span>Clone <a href='[GIT_REPO_URL]' target='_blank' rel='noopener noreferrer' className='underline hover:text-foreground'>opensoure project</a> for local setup</span>
+                      <span>Clone <a href='https://github.com/SparkSylva/Infinite-Canvas-AI-Omnigen' target='_blank'  className='underline hover:text-foreground'>opensoure project</a> for local setup</span>
                     </div>
                   </div>
                 </div>

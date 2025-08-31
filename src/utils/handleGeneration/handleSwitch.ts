@@ -43,7 +43,6 @@ export const handleGeneration_switch = async (
 }
 
 
-// use credits switch
 export const handleGeneration_switch_model = async (
     handle_input: OnSubmitClientParams
 ) => {

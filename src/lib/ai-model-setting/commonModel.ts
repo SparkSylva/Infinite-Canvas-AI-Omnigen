@@ -148,7 +148,7 @@ const flux_series_image_model: ModelSeriesSetting[] = [
         id: "flux-schnell",
         label: "Flux schnell",
         tag: ["Text to Image"],
-        badge: ["Free to try"],
+        badge: [],
         description: "Flux schnell model for image generation",
         supportedAspectRatios: ["1:1", "3:4", "4:3", "2:3", "3:2", "4:5", "5:4", "16:9", "9:16", "21:9", "9:21"],
         type: 'image',
@@ -196,7 +196,7 @@ const flux_series_image_model: ModelSeriesSetting[] = [
         description: "Balanced version with good quality-speed ratio",
         supportedAspectRatios: ["1:1", "3:4", "4:3", "2:3", "3:2", "4:5", "5:4", "16:9", "9:16", "21:9", "9:21"],
         tag: ["Text to Image"],
-        badge: ["Free to try"],
+        badge: [],
         type: 'image',
         provider: ['fal'],
         useCredits: 0.3,
@@ -248,7 +248,7 @@ const flux_series_image_model: ModelSeriesSetting[] = [
         description: "Optimized for realistic images",
         supportedAspectRatios: ["1:1", "3:4", "4:3", "2:3", "3:2", "4:5", "5:4", "16:9", "9:16", "21:9", "9:21"],
         tag: ["Text to Image"],
-        badge: ["Free to try"],
+        badge: [],
         type: 'image',
         provider: ['fal'],
         useCredits: 0.3,
@@ -292,7 +292,7 @@ const flux_series_image_model: ModelSeriesSetting[] = [
         id: "flux-dev-kontext-text2image-lora",
         label: "Flux dev Kontext",
         tag: ["Text to Image"],
-        badge: ["Free to try"],
+        badge: [],
         description: "Flux dev kontext model for text to image generation",
         supportedAspectRatios: ["1:1", "3:4", "4:3", "2:3", "3:2", "4:5", "5:4", "16:9", "9:16", "21:9", "9:21"],
         type: 'image',
@@ -499,7 +499,7 @@ const flux_series_image_model: ModelSeriesSetting[] = [
         id: "flux-dev-kontext-image-edit",
         label: "Flux dev Kontext Edit",
         tag: ["Image to Image"],
-        badge: ["Image Edit", "Free to try"],
+        badge: ["Image Edit", ],
         description: "Flux dev kontext model for image editing",
         supportedAspectRatios: ["auto", "1:1", "3:4", "4:3", "2:3", "3:2", "16:9", "9:16", "21:9", "9:21"],
         supportAddFiles: [
@@ -700,7 +700,7 @@ const google_series_image_model: ModelSeriesSetting[] = [
         description: "Suitable for simple image editing with faster processing speed",
         // supportedAspectRatios: ["1:1"],
         tag: ["Image to Image"],
-        badge: ["Image Edit", "Free to try"],
+        badge: ["Image Edit", ],
         supportAddFiles: [
             {
                 name: "control_images",
@@ -732,7 +732,7 @@ const google_series_image_model: ModelSeriesSetting[] = [
         description: "Insane Image Editing Model",
         // supportedAspectRatios: ["1:1"],
         tag: ["Image to Image"],
-        badge: ["Image Edit", "Free to try"],
+        badge: ["Image Edit", ],
         customParameters: [
             {
                 name: "num_outputs",
@@ -780,7 +780,7 @@ const google_series_image_model: ModelSeriesSetting[] = [
     //     description: "Insane Text to Image Model",
     //     // supportedAspectRatios: ["1:1"],
     //     tag: ["Text to Image"],
-    //     badge: ["Free to try"],
+    //     badge: [],
 
     //     type: 'image',
     //     provider: ['fal',],
@@ -894,7 +894,7 @@ const qwen_series_image_model: ModelSeriesSetting[] = [
         description: "Suitable for simple image editing with faster processing speed",
         // supportedAspectRatios: ["1:1"],
         tag: ["Image to Image"],
-        badge: ["Image Edit", "Free to try",],
+        badge: ["Image Edit", ],
         supportAddFiles: [
             {
                 name: "control_images",
@@ -938,7 +938,7 @@ const character_series_image_model: ModelSeriesSetting[] = [
         id: "flux-dev-pulid",
         label: "Character- face",
         tag: ["Image to Image"],
-        badge: ["Face Reference", "Free to try"],
+        badge: ["Face Reference", ],
         description: "Focuses on preserving facial features, more variability.",
         supportedAspectRatios: ["1:1", "3:4", "4:3", "2:3", "3:2", "4:5", "5:4", "16:9", "9:16", "21:9", "9:21"],
         supportAddFiles: [
@@ -1024,7 +1024,7 @@ const character_series_image_model: ModelSeriesSetting[] = [
     //     id: "instant-character-instantx",
     //     label: "Instant Character- overall",
     //     tag: ["Image to Image"],
-    //     badge: ["Character Reference", "Free to try"],
+    //     badge: ["Character Reference", ],
     //     description: "Focuses on preserving the full-body features of the character from the input image; the generated image style follows the input image.",
     //     supportedAspectRatios: ["1:1", "3:4", "4:3", "2:3", "3:2", "4:5", "5:4", "16:9", "9:16", "21:9", "9:21"],
     //     supportAddFiles: [
@@ -1315,7 +1315,7 @@ const alibaba_wan_series_video_model: ModelSeriesSetting[] = [
         label: "Wan2.2 Turbo",
         description: "Fast, cinematic videos",
         tag: ["Text to Video"],
-        badge: ["Free to try", "Fast"],
+        badge: [ "Fast"],
         type: 'video',
         provider: ['fal'],
 
@@ -1360,7 +1360,7 @@ const alibaba_wan_series_video_model: ModelSeriesSetting[] = [
         label: "Wan2.2 Turbo",
         description: "Fast, cinematic videos",
         tag: ["Image to Video"],
-        badge: ["Free to try", "Fast"],
+        badge: ["Fast"],
         type: 'video',
         provider: ['fal'],
         supportAddFiles: [
@@ -2465,7 +2465,7 @@ const other_series_video_model: ModelSeriesSetting[] = [
         label: "LTX",
         description: "Budget-friendly realistic videos ",
         tag: ["Image to Video"],
-        badge: ["Free to try", "Fast"],
+        badge: ["Fast"],
         supportAddFiles: [
             {
                 name: "control_images",

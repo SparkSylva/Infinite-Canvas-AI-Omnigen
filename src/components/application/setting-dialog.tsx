@@ -160,7 +160,7 @@ export function ModelSettingsDialog({
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogTrigger asChild>
-        <div className='flex flex-row gap-1 items-center hover:bg-foreground/10 rounded-md p-2 cursor-pointer border border-foreground'>
+        <div className='flex flex-wrap gap-1 items-center hover:bg-foreground/10 rounded-md p-2 cursor-pointer border border-foreground'>
           <Menu className="h-4 w-4" />
           {currentModelObj && (
             <Badge className="ml-1 text-xs" variant="outline">
@@ -266,7 +266,7 @@ export function ModelSettingsDialog({
                             <div className='flex flex-wrap gap-1'>
                               {model?.useCredits && (
                                 <Badge variant="outline" className="text-xs flex-shrink-0 capitalize">
-                                  {model?.useCredits}
+                                  {model?.useCredits/10}
                                   <Zap className='ml-1 h-4 text-[#facc15]' />
                                 </Badge>
                               )}
