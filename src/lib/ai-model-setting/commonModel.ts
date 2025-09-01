@@ -87,7 +87,7 @@ export type ModelSeriesSetting = {
     isSupportEndImageRef?: number; // DEPRECATED: use supportAddFiles
     // apiInput: 
     apiInput?: ApiInputSchema;
-    hfApiInput?: ApiInputSchema
+    // hfApiInput?: ApiInputSchema
     // adpter model : such as lora
 
     supportAdapterModel?: Record<string, AdapterModelSeriesSetting[]>;
@@ -179,15 +179,6 @@ const flux_series_image_model: ModelSeriesSetting[] = [
                     to: 'num_images', from: 'num_outputs', transform: [{ op: 'toNumber' }]
                 }
             ]
-        },
-        hfApiInput: {
-            provider: 'huggingface',
-            endpoint: 'black-forest-labs/FLUX.1-schnell',
-            options: {
-                infer_endpoint: "/infer",
-                outputPick: 'data.[0].url',
-            },
-            rules: base_hf_image_rules
         }
     },
     {
@@ -231,15 +222,6 @@ const flux_series_image_model: ModelSeriesSetting[] = [
                     to: 'guidance_scale', const: 3.5
                 }
             ]
-        },
-        hfApiInput: {
-            provider: 'huggingface',
-            endpoint: 'black-forest-labs/FLUX.1-dev',
-            options: {
-                infer_endpoint: "/infer",
-                outputPick: 'data.[0].url',
-            },
-            rules: base_hf_image_rules
         }
     },
     {
@@ -277,15 +259,6 @@ const flux_series_image_model: ModelSeriesSetting[] = [
                     to: 'num_images', from: 'num_outputs', transform: [{ op: 'toNumber' }]
                 }
             ]
-        },
-        hfApiInput: {
-            provider: 'huggingface',
-            endpoint: 'black-forest-labs/FLUX.1-Krea-dev',
-            options: {
-                infer_endpoint: "/infer",
-                outputPick: 'data.[0].url',
-            },
-            rules: base_hf_image_rules
         }
     },
     {
@@ -521,17 +494,6 @@ const flux_series_image_model: ModelSeriesSetting[] = [
             rules: [
                 ...base_image_aspect_rules,
 
-            ]
-        },
-        hfApiInput: {
-            provider: 'huggingface',
-            endpoint: 'black-forest-labs/FLUX.1-Kontext-Dev',
-            options: {
-                infer_endpoint: "/infer",
-                outputPick: 'data.[0].url',
-            },
-            rules: [
-                ...base_hf_image_rules.filter(rule => !["width", "height"].includes(rule.to))
             ]
         }
     },
@@ -913,20 +875,6 @@ const qwen_series_image_model: ModelSeriesSetting[] = [
             rules: [
                 ...base_image_rules,
             ]
-        },
-        hfApiInput: {
-            provider: 'huggingface',
-            endpoint: "multimodalart/Qwen-Image-Edit-Fast",
-            options: {
-                infer_endpoint: "/infer",
-                outputPick: 'data.[0].url',
-            },
-            rules: [
-                {
-                    to: 'prompt', from: ['prompt_process', 'prompt'], transform: [{ op: 'coalesce' }]
-                },
-                { to: "image", from: "control_images", transform: [{ op: "pick", index: 0 }] }
-            ]
         }
     },
 
@@ -964,29 +912,6 @@ const character_series_image_model: ModelSeriesSetting[] = [
                 { to: 'max_sequence_length ', const: '512' },
                 { to: 'enable_safety_checker', from: 'enable_safety_checker' },
             ]
-        },
-        hfApiInput: {
-            provider: 'huggingface',
-            endpoint: 'fantaxy/flx-pulid',//'yanze/PuLID-FLUX',
-            options: {
-                infer_endpoint: "/generate_image",
-                outputPick: 'data.[0].url',
-            },
-            rules: [
-                {
-                    to: 'prompt', from: ['prompt_process', 'prompt'], transform: [{ op: 'coalesce' }]
-                },
-                { to: 'width', from: 'width', transform: [{ op: 'toNumber' },] },
-                { to: 'height', from: 'height', transform: [{ op: 'toNumber' },] },
-                { to: 'id_image', from: 'control_images', transform: [{ op: 'pick', index: 0 }] },
-                { to: 'max_sequence_length', const: 256 },
-                { to: 'neg_prompt', const: "bad quality, worst quality, signature, watermark, extra limbs" },
-                { to: 'true_cfg', const: 1 },
-                { to: 'num_steps', const: 20 },
-                { to: 'guidance', const: 3 },
-                { to: 'id_weight', const: 1 },
-                { to: 'timestep_to_start_cfg', const: 4 },
-            ]
         }
     },
     {
@@ -1020,51 +945,7 @@ const character_series_image_model: ModelSeriesSetting[] = [
             ]
         }
     },
-    // {
-    //     id: "instant-character-instantx",
-    //     label: "Instant Character- overall",
-    //     tag: ["Image to Image"],
-    //     badge: ["Character Reference", ],
-    //     description: "Focuses on preserving the full-body features of the character from the input image; the generated image style follows the input image.",
-    //     supportedAspectRatios: ["1:1", "3:4", "4:3", "2:3", "3:2", "4:5", "5:4", "16:9", "9:16", "21:9", "9:21"],
-    //     supportAddFiles: [
-    //         {
-    //             name: "control_images",
-    //             label: "Character Reference",
-    //             type: "image",
-    //             isRequired: true,
-    //             isSupport: 1,
-    //         },
-    //     ],
-    //     type: 'image',
-    //     provider: ['fal'],
-    //     useCredits: 1,
-    //     apiInput: {
-    //         provider: 'fal',
-    //         endpoint: 'fal-ai/instant-character',
-    //         rules: [
-    //             ...base_image_rules
-    //         ]
-    //     },
-    //     hfApiInput: {
-    //         provider: 'huggingface',
-    //         endpoint: 'InstantX/InstantCharacter',
-    //         options: {
-    //             infer_endpoint: "/create_image",
-    //             outputPick: 'data.[0].[0].image.url',
-    //         },
-    //         rules: [
-    //             {
-    //                 to: 'prompt', from: ['prompt_process', 'prompt'], transform: [{ op: 'coalesce' }]
-    //             },
-    //             { to: 'input_image', from: 'control_images', transform: [{ op: 'pick', index: 0 }] },
-    //             { to: 'scale', const: 1 },
-    //             { to: 'guidance_scale', const: 4 },
-    //             { to: 'num_inference_steps', const: 28 },
-    //             { to: 'style_mode', const: null },
-    //         ]
-    //     }
-    // },
+  
 ]
 const other_series_image_model: ModelSeriesSetting[] = [
     {
@@ -1110,29 +991,6 @@ const other_series_image_model: ModelSeriesSetting[] = [
                 {
                     to: 'initial_latent', from: 'meta_data.light_type', transform: [{ op: 'default', value: 'None' }]
                 }
-            ]
-        },
-        hfApiInput: {
-            provider: 'huggingface',
-            endpoint: 'lllyasviel/iclight-v2-vary',
-            options: {
-                infer_endpoint: "/process",
-                outputPick: 'data.[0].[0].image.url',
-            },
-            rules: [
-                {
-                    to: 'prompt', from: ['prompt_process', 'prompt'], transform: [{ op: 'coalesce' }]
-                },
-                { to: 'image_width', from: 'width', transform: [{ op: 'toNumber' }, { op: 'customFn', fn: 'findClosestValidNumber' }] },
-                { to: 'image_height', from: 'height', transform: [{ op: 'toNumber' }, { op: 'customFn', fn: 'findClosestValidNumber' }] },
-                { to: 'input_fg', from: 'control_images', transform: [{ op: 'pick', index: 0 }] },
-                {
-                    to: 'bg_source', from: 'meta_data.light_type',
-                    transform: [
-                        { op: 'customFn', fn: 'formatIcLightBgSource' },
-                        { op: 'default', value: 'None' }
-                    ]
-                },
             ]
         }
     },
@@ -1400,21 +1258,6 @@ const alibaba_wan_series_video_model: ModelSeriesSetting[] = [
                     to: 'resolution', from: 'resolution',
                     transform: [{ op: 'default', value: '480p' }]
                 },
-            ]
-        },
-        hfApiInput: {
-            provider: 'huggingface',
-            endpoint: 'zerogpu-aoti/wan2-2-fp8da-aoti-faster',
-            options: {
-                infer_endpoint: "/generate_video",
-                outputPick: 'data.[0].video.url',
-            },
-            rules: [
-                ...base_hf_image_rules.filter(rule => !["width", "height"].includes(rule.to)),
-                { to: 'negative_prompt', const: "Vibrant colors, overexposed, static, blurred details, subtitles, style, artwork, painting, image, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, mutilated, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, deformed limbs, fused fingers, still image, cluttered background, three legs, crowded background, walking backwards" },
-                { to: 'duration_seconds', const: 4 },
-                { to: 'randomize_seed', const: true },
- 
             ]
         }
     },
@@ -2504,23 +2347,6 @@ const other_series_video_model: ModelSeriesSetting[] = [
                     to: 'resolution', from: 'resolution',
                     transform: [{ op: 'default', value: '480p' }]
                 },
-            ]
-        },
-        hfApiInput: {
-            provider: 'huggingface',
-            endpoint: 'Lightricks/ltx-video-distilled',
-            options: {
-                infer_endpoint: "/image_to_video",
-                outputPick: 'data.[0].video.url',
-            },
-            rules: [
-                ...base_hf_image_rules.filter(rule => !["input_image", "width", "height"].includes(rule.to)),
-                { to: 'duration_ui', const: 4 },
-                { to: 'input_image_filepath', from: 'control_images', transform: [{ op: 'pick', index: 0 }] },
-                { to: 'width_ui', from: 'width', transform: [{ op: 'toNumber' }, { op: 'customFn', fn: 'findClosestValidNumber' }] },
-                { to: 'height_ui', from: 'height', transform: [{ op: 'toNumber' }, { op: 'customFn', fn: 'findClosestValidNumber' }] },
-
-
             ]
         }
     },

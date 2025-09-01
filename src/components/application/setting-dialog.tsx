@@ -8,7 +8,7 @@ import {
   Sparkles,
   CheckIcon,
   WandSparkles,
-  Zap, PlusCircle, Trash2,
+  DollarSign, PlusCircle, Trash2,
   Menu
 } from "lucide-react"
 
@@ -266,8 +266,9 @@ export function ModelSettingsDialog({
                             <div className='flex flex-wrap gap-1'>
                               {model?.useCredits && (
                                 <Badge variant="outline" className="text-xs flex-shrink-0 capitalize">
+                           
+                                  <DollarSign className='ml-1 h-4 text-[#facc15]' />
                                   {model?.useCredits/10}
-                                  <Zap className='ml-1 h-4 text-[#facc15]' />
                                 </Badge>
                               )}
                             </div>
