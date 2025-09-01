@@ -32,13 +32,13 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
   // read route params
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
 
-  const metaTitle = t(`${i18nNamespaces[0]}:${pageName}.meta.metaTitle`) || process.env.NEXT_PUBLIC_SITE_NAME
-  const metaDescription = t(`${i18nNamespaces[0]}:${pageName}.meta.metaDescription`) || process.env.NEXT_PUBLIC_SITE_NAME
+  const metaTitle = t(`${i18nNamespaces[0]}:${pageName}.meta.metaTitle`) || process.env.NEXT_PUBLIC_SITE_NAME || 'Infinite Canvas - AI Omnigen'
+  const metaDescription = t(`${i18nNamespaces[0]}:${pageName}.meta.metaDescription`) || process.env.NEXT_PUBLIC_SITE_NAME || 'Infinite Canvas - AI Omnigen'
 
   return {
     title: metaTitle,
     description: metaDescription,
-    metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL}`),
+    metadataBase: new URL(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}`),
     alternates: {
       canonical: locale == 'en' ? '/' : locale,
       languages: languageAltertive,
