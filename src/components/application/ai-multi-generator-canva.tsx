@@ -738,7 +738,7 @@ const AiMultiGeneratorApp = forwardRef<AiAppRef, AppProps>(({
             }
         }
 
-        console.log('filtered', filtered)
+        // console.log('filtered', filtered)
         const apiInputData = await processFileUrlToApiInput({
             inputData: filtered,
             need_to_upload_image_url: [],
@@ -776,7 +776,7 @@ const AiMultiGeneratorApp = forwardRef<AiAppRef, AppProps>(({
 
             // filter file upload and process user input data for api input
             userInputData = await filterUserInputForFileUpload(userInputData);
-            console.log('filteredUserInputData', userInputData)
+            // console.log('filteredUserInputData', userInputData)
             // Process user input data with translation if needed
             userInputData = await userInputDataProcess(userInputData);
             // return
@@ -787,7 +787,7 @@ const AiMultiGeneratorApp = forwardRef<AiAppRef, AppProps>(({
 
                 setIsGenerating: (value: any, meta?: any) => {
                     if (value === false) {
-                        console.log('handle_input setIsGenerating false')
+                        // console.log('handle_input setIsGenerating false')
                         handleGenerationComplete(
                             generationId,
                             null,
