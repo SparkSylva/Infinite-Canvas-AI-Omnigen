@@ -25,16 +25,6 @@ export function findApiPointByModelId(
     const setting = findSettingByModelId(model_id, source);
     return setting?.apiInput?.endpoint ?? "";
 }
-export function findHfSettingByModelId(
-    model_id: string,
-    source: Record<string, ModelSeriesSetting[]> = common_model_serise_setting
-): ApiInputSchema | null {
-    if (!model_id) return null;
-
-    const found = getAllMain(source).find((s) => s.id === model_id);
-
-    return found?.hfApiInput ?? null;
-}
 
 export function findModelsByTag(
     tagString: string,
