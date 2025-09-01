@@ -90,10 +90,7 @@ export const SettingDialog: React.FC<SettingDialogProps> = ({ isOpen, onOpenChan
                 <div className="bg-muted/50 rounded-lg p-3 space-y-2">
                   <p className="text-xs font-medium text-foreground">💡 Better alternatives:</p>
                   <div className="space-y-1 text-xs">
-                    <div className="flex items-center gap-2">
-                      <span className="text-blue-500">🔗</span>
-                      <span>Try our full online service: <a href='https://aiomnigen.com/playground' target='_blank' className='underline hover:text-foreground'>aiomnigen</a> (no API key needed)</span>
-                    </div>
+                  
                     <div className="flex items-center gap-2">
                       <span className="text-green-500">📁</span>
                       <span>Clone <a href='https://github.com/SparkSylva/Infinite-Canvas-AI-Omnigen' target='_blank'  className='underline hover:text-foreground'>opensoure project</a> for local setup</span>
