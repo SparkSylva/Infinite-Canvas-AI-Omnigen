@@ -37,6 +37,9 @@ yarn-error.log*
 next-env.d.ts
 .env
 
+# cusor rules
+# .cusor
+
 # test
 /components/test/*
 /pages/test/*
